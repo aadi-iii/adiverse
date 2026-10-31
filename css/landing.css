@@ -1,0 +1,1187 @@
+/* ============================================================
+   ADIVERSE  -  LANDING PAGE STYLES
+   Official Brand Identity:
+   - Studio Yellow Gradient (#FFF96B -> #FFF21A -> #F3D91A)
+   - Official 3D Glossy Purple Liquid Tree Emblem (Hero, Navbar, Favicon)
+   - Custom Pill CTA Architecture with Micro-motion
+   - Premium Glass Navbar with Tree Brand Alignment
+   ============================================================ */
+
+
+/* ============================================================
+   SUBTLE EDITORIAL GRID CANVAS OVERLAY
+   Fine, minimal technical grid over vibrant yellow gradient
+   Softly masked around the central hero tree sculpture
+   ============================================================ */
+
+.bg-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: var(--grid-pattern);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(
+    ellipse 560px 460px at 50% 450px,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.50) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 560px 460px at 50% 450px,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.50) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+
+/* ============================================================
+   PREMIUM NAVBAR
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  background-color: var(--glass-nav-bg);
+  backdrop-filter: var(--glass-nav-blur);
+  -webkit-backdrop-filter: var(--glass-nav-blur);
+  border-bottom: 1px solid var(--glass-nav-border);
+  box-shadow: var(--glass-nav-shadow);
+  transition: background-color 300ms ease,
+              border-color 300ms ease,
+              box-shadow 300ms ease,
+              backdrop-filter 300ms ease,
+              -webkit-backdrop-filter 300ms ease;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .nav {
+    background-color: rgba(248, 243, 166, 0.92);
+  }
+}
+
+.nav.scrolled,
+.nav.is-scrolled {
+  background-color: var(--glass-nav-scroll-bg);
+  backdrop-filter: var(--glass-nav-scroll-blur);
+  -webkit-backdrop-filter: var(--glass-nav-scroll-blur);
+  border-bottom: 1px solid var(--glass-nav-scroll-border);
+  box-shadow: var(--glass-nav-scroll-shadow);
+}
+
+.nav__inner {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+/* Brand Area: Exact Purple Tree Emblem + ADIVERSE Wordmark */
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav__brand:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.nav__logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(166, 107, 239, 0.35));
+}
+
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: var(--weight-black);
+  letter-spacing: 0.06em;
+  color: var(--color-dark);
+}
+
+/* Navigation Links */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav__link {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  position: relative;
+  padding-block: var(--space-1);
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-purple);
+  transition: width var(--transition-base);
+}
+
+.nav__link:hover {
+  color: var(--color-purple-deep);
+}
+
+.nav__link:hover::after {
+  width: 100%;
+}
+
+/* Navbar Custom Pill CTA */
+.nav__cta {
+  flex-shrink: 0;
+}
+
+.nav__cta .btn {
+  padding: 0.75rem 1.6rem;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+}
+
+/* Hamburger for Mobile */
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: var(--space-2);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.nav__hamburger span {
+  display: block;
+  height: 2px;
+  background-color: var(--color-dark);
+  border-radius: 2px;
+  transition: transform var(--transition-base),
+              opacity var(--transition-base);
+  transform-origin: center;
+}
+
+.nav__hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav__hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav__hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav__mobile {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 251, 224, 0.88);
+  backdrop-filter: var(--glass-nav-blur);
+  -webkit-backdrop-filter: var(--glass-nav-blur);
+  border-bottom: 1px solid rgba(23, 23, 23, 0.12);
+  padding: var(--space-6) var(--space-8);
+  flex-direction: column;
+  gap: var(--space-4);
+  z-index: 99;
+  box-shadow: var(--shadow-md);
+}
+
+.nav__mobile.is-open {
+  display: flex;
+}
+
+.nav__mobile-link {
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  padding-block: var(--space-2);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.1);
+  transition: color var(--transition-fast);
+}
+
+.nav__mobile-link:last-of-type {
+  border-bottom: none;
+}
+
+.nav__mobile-link:hover {
+  color: var(--color-purple);
+}
+
+.nav__mobile-cta {
+  margin-top: var(--space-2);
+  align-self: flex-start;
+}
+
+
+/* ============================================================
+   HERO: OVERSIZED ADIVERSE + 3D LIQUID PURPLE TREE LOGO
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: clamp(680px, 92vh, 920px);
+  padding-top: calc(var(--nav-height) + var(--space-6));
+  padding-bottom: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.hero__inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Eyebrow & Brand Statement */
+.hero__meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+}
+
+.hero__eyebrow-line {
+  display: inline-block;
+  width: 26px;
+  height: 2px;
+  background-color: var(--color-purple);
+}
+
+.hero__badge {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1px solid var(--glass-border);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+}
+
+/* Massive Brand Wordmark Stage */
+.hero__wordmark-stage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-2);
+}
+
+.hero__big-title {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: var(--weight-black);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--color-dark);
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+/*
+  3D Glossy Liquid Purple Tree Brand Sculpture
+  STRICT MANDATE: ZERO CARD, ZERO BOX, ZERO RECTANGLE BEHIND IT.
+  Floats directly over the yellow gradient background with genuine transparent alpha channel.
+*/
+.hero__sculpture-container {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: 480px;
+  margin-top: -5.5vw;
+  margin-bottom: -2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.hero__sculpture-img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 36px rgba(166, 107, 239, 0.28))
+          drop-shadow(0 30px 60px rgba(23, 23, 23, 0.20));
+  transition: transform 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* Subtle organic ground contact shadow */
+.hero__sculpture-shadow {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 38px;
+  background: var(--sculpture-contact-shadow);
+  border-radius: 50%;
+  filter: blur(8px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Floating Frosted Glass Annotation Badges */
+.hero__annotation {
+  position: absolute;
+  background-color: var(--glass-label-bg);
+  backdrop-filter: var(--glass-label-blur);
+  -webkit-backdrop-filter: var(--glass-label-blur);
+  border: var(--glass-label-border);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  color: var(--color-dark);
+  box-shadow: var(--glass-label-shadow);
+  white-space: nowrap;
+  cursor: default;
+  transition: transform var(--transition-spring),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+  z-index: 4;
+}
+
+.hero__annotation::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-purple);
+  margin-right: 8px;
+  vertical-align: middle;
+  box-shadow: 0 0 10px var(--color-purple-glow);
+}
+
+.hero__annotation:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: var(--color-purple);
+  box-shadow: var(--shadow-purple);
+}
+
+.hero__annotation--left {
+  top: 30%;
+  left: -2%;
+}
+
+.hero__annotation--right {
+  top: 42%;
+  right: -2%;
+}
+
+/* Lower Hero Grid: Tagline, Body Copy & Custom Pill CTAs */
+.hero__footer-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: end;
+  gap: var(--space-12);
+  margin-top: var(--space-4);
+  z-index: 4;
+}
+
+.hero__tagline-wrap {}
+
+.hero__tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  font-weight: var(--weight-black);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: var(--color-dark);
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.hero__tagline span {
+  color: var(--color-purple-deep);
+}
+
+.hero__body {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+  max-width: 44ch;
+}
+
+.hero__cta-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-4);
+}
+
+.hero__cta-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.hero__sub-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+
+/* ============================================================
+   LIVING KNOWLEDGE UNIVERSE (Section C)
+   Structured, Annotated Concept Architecture (Distinct from Hero Tree Logo!)
+   Seamless section transition with genuine frosted glass panel
+   ============================================================ */
+
+.universe-preview,
+.universe-section {
+  padding-block: var(--space-24);
+  background: transparent;
+  border-top: none;
+  border-bottom: none;
+  position: relative;
+}
+
+.universe-preview__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.universe-preview__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-snug);
+}
+
+.universe-preview__subtitle {
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  max-width: 54ch;
+  margin-inline: auto;
+  line-height: var(--leading-relaxed);
+}
+
+.universe-preview__canvas {
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+  position: relative;
+  background: var(--glass-panel-bg);
+  -webkit-backdrop-filter: var(--glass-panel-blur);
+  backdrop-filter: var(--glass-panel-blur);
+  border: var(--glass-panel-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--glass-panel-shadow);
+  overflow: visible;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .universe-preview__canvas {
+    background-color: rgba(255, 255, 255, 0.88);
+  }
+}
+
+/* Genuine Translucent Frosted Glass Legend Overlay */
+.universe-legend {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--glass-legend-bg);
+  backdrop-filter: var(--glass-legend-blur);
+  -webkit-backdrop-filter: var(--glass-legend-blur);
+  border: var(--glass-legend-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-legend-shadow);
+  z-index: 5;
+  pointer-events: auto;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .universe-legend {
+    background-color: rgba(255, 255, 255, 0.92);
+  }
+}
+
+.universe-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  color: var(--color-dark);
+  letter-spacing: 0.02em;
+}
+
+.universe-legend__indicator {
+  display: inline-block;
+  width: 24px;
+  height: 0;
+  border-top-width: 2px;
+  border-top-style: solid;
+}
+
+.universe-legend__indicator--cross {
+  border-top-color: var(--color-purple);
+  border-top-style: dashed;
+  border-top-width: 2px;
+}
+
+.universe-legend__indicator--branch {
+  border-top-color: var(--color-dark);
+  border-top-style: solid;
+  border-top-width: 2.5px;
+}
+
+.universe-preview__canvas svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.universe-preview__caption {
+  text-align: center;
+  margin-top: var(--space-6);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+
+/* ============================================================
+   VISION (Section D)
+   ============================================================ */
+
+.vision {
+  padding-block: var(--space-24);
+}
+
+.vision__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.vision__statement {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: var(--weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.vision__statement em {
+  font-style: italic;
+  font-family: var(--font-serif);
+  color: var(--color-purple-deep);
+}
+
+.vision__accent-line {
+  width: 64px;
+  height: 3px;
+  background-color: var(--color-purple);
+  border-radius: 2px;
+}
+
+.vision__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+.vision__body {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.vision__detail {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background-color: var(--glass-panel-bg);
+  border: var(--glass-panel-border);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  box-shadow: 0 4px 16px rgba(23, 23, 23, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: border-color var(--transition-base),
+              background-color var(--transition-base),
+              transform var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.vision__detail:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: var(--color-purple);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.vision__detail-icon {
+  flex-shrink: 0;
+  margin-top: 3px;
+  width: 22px;
+  height: 22px;
+}
+
+.vision__detail-text {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-text-muted);
+}
+
+.vision__detail-text strong {
+  display: block;
+  color: var(--color-dark);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-base);
+  margin-bottom: 2px;
+}
+
+
+/* ============================================================
+   HOW IT WORKS (Section E)
+   ============================================================ */
+
+.how-it-works {
+  background: transparent;
+  padding-block: var(--space-24);
+  border-top: none;
+  border-bottom: none;
+}
+
+.how-it-works__header {
+  text-align: center;
+  margin-bottom: var(--space-14);
+}
+
+.how-it-works__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  margin-top: var(--space-3);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  position: relative;
+}
+
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 52px;
+  left: calc(33.333% + 15px);
+  right: calc(33.333% + 15px);
+  height: 2px;
+  background-color: var(--color-purple);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  background-color: var(--glass-panel-bg);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: var(--glass-panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-panel-shadow);
+  transition: transform var(--transition-base),
+              background-color var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.step:hover {
+  transform: translateY(-4px);
+  background-color: rgba(255, 255, 255, 0.90);
+  border-color: var(--color-purple);
+  box-shadow: var(--shadow-purple);
+}
+
+.step__icon {
+  width: 68px;
+  height: 68px;
+  margin-bottom: var(--space-5);
+  flex-shrink: 0;
+}
+
+.step__number {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-black);
+  color: var(--color-purple-deep);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.step__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-dark);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.01em;
+}
+
+.step__body {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+  max-width: 28ch;
+}
+
+
+/* ============================================================
+   FEATURES (Section F)
+   ============================================================ */
+
+.features {
+  padding-block: var(--space-24);
+}
+
+.features__header {
+  margin-bottom: var(--space-12);
+}
+
+.features__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  margin-top: var(--space-3);
+  max-width: 24ch;
+  line-height: var(--leading-snug);
+}
+
+.features__subtitle {
+  margin-top: var(--space-3);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  line-height: var(--leading-relaxed);
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--space-6);
+}
+
+.feature-card {
+  background-color: var(--glass-panel-bg);
+  backdrop-filter: var(--glass-panel-blur);
+  -webkit-backdrop-filter: var(--glass-panel-blur);
+  border: var(--glass-panel-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--glass-panel-shadow);
+  transition: border-color var(--transition-base),
+              box-shadow var(--transition-base),
+              transform var(--transition-base);
+}
+
+.feature-card:hover {
+  border-color: var(--color-purple);
+  box-shadow: var(--shadow-purple);
+  transform: translateY(-3px);
+}
+
+.feature-card--wide {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.feature-card__icon-wrap {
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-purple-tint);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+  transition: background-color var(--transition-base);
+}
+
+.feature-card:hover .feature-card__icon-wrap {
+  background-color: var(--color-purple);
+}
+.feature-card:hover .feature-card__icon-wrap svg path,
+.feature-card:hover .feature-card__icon-wrap svg line,
+.feature-card:hover .feature-card__icon-wrap svg circle {
+  stroke: #FFFFFF;
+}
+
+.feature-card__tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--color-purple-deep);
+  background-color: rgba(166, 107, 239, 0.18);
+  border: 1px solid rgba(166, 107, 239, 0.35);
+  padding: 4px var(--space-3);
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-4);
+}
+
+.feature-card__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-2);
+  line-height: 1.3;
+}
+
+.feature-card__body {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+}
+
+.feature-card__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  min-height: 200px;
+  transition: background-color var(--transition-base);
+}
+
+.feature-card--wide:hover .feature-card__visual {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+
+/* ============================================================
+   CLOSING CTA (Section G)
+   ============================================================ */
+
+.closing-cta {
+  background-color: var(--color-dark);
+  padding-block: var(--space-24);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: #FFFFFF;
+}
+
+.closing-cta::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(166, 107, 239, 0.28) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.closing-cta::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  right: 10%;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 242, 26, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.closing-cta__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin-inline: auto;
+  padding-inline: var(--space-8);
+}
+
+.closing-cta__eyebrow {
+  color: var(--color-purple);
+  margin-bottom: var(--space-4);
+}
+
+.closing-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  font-weight: var(--weight-black);
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin-bottom: var(--space-4);
+}
+
+.closing-cta__body {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+}
+
+.closing-cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   FOOTER (Section H)
+   ============================================================ */
+
+.footer {
+  background-color: var(--color-bg);
+  border-top: 2px solid var(--color-dark);
+  padding-block: var(--space-12);
+}
+
+.footer__inner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-8);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-10);
+  flex-wrap: wrap;
+}
+
+.footer__wordmark {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: var(--weight-black);
+  letter-spacing: 0.04em;
+  color: var(--color-dark);
+  margin-bottom: var(--space-2);
+}
+
+.footer__description {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  max-width: 28ch;
+  line-height: 1.7;
+}
+
+.footer__nav {
+  display: flex;
+  gap: var(--space-10);
+  flex-wrap: wrap;
+}
+
+.footer__nav-label {
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  margin-bottom: var(--space-3);
+}
+
+.footer__nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer__nav-link {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer__nav-link:hover {
+  color: var(--color-purple-deep);
+}
+
+.footer__bottom {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-8);
+  padding-top: var(--space-8);
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.footer__tagline {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  color: var(--color-dark);
+}
+
+.footer__legal {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+
+/* ============================================================
+   REVEAL & GRAPH ANIMATIONS
+   ============================================================ */
+
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-gentle),
+              transform var(--transition-gentle);
+}
+
+.reveal--delay-1 { transition-delay: 80ms;  }
+.reveal--delay-2 { transition-delay: 150ms; }
+.reveal--delay-3 { transition-delay: 220ms; }
+.reveal--delay-4 { transition-delay: 290ms; }
+
+.graph-node--animate {
+  opacity: 1;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.graph-edge--animate {
+  opacity: 1;
+  stroke-dashoffset: 0;
+  transition: stroke var(--transition-fast), stroke-width var(--transition-fast);
+}
+
+.is-animating .graph-edge--animate {
+  animation: drawPath 0.8s ease forwards;
+}

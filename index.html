@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Adiverse is a personal academic workspace where college students organize subjects, connect concepts, and explore an evolving living knowledge universe." />
+  <meta name="theme-color" content="#F8F3A6" />
+
+  <title>Adiverse - Your knowledge. Your universe.</title>
+
+  <!-- Official Adiverse Tree Favicon Suite -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png" />
+  <link rel="apple-touch-icon" href="assets/favicon-192x192.png" />
+
+  <!-- Google Fonts: DM Sans (Bold Modern Geometric Display) + Cormorant Garamond (Editorial Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,900&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Subtle Academic Technical Grid Pattern Canvas Overlay -->
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- ======================================================
+       PREMIUM NAVIGATION (Official Tree Brand Emblem)
+       ====================================================== -->
+  <header>
+    <nav
+      id="site-nav"
+      class="nav"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div class="nav__inner">
+
+        <!-- Official Brand Logo: Glossy Purple Tree Emblem + ADIVERSE Wordmark -->
+        <a href="#" class="nav__brand" aria-label="Adiverse - Home">
+          <img
+            src="assets/tree-logo-nav.png"
+            alt="Adiverse Tree Logo"
+            class="nav__logo-img"
+            width="36"
+            height="36"
+            loading="eager"
+          />
+          <span class="nav__wordmark">ADIVERSE</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="nav__links" role="list">
+          <li><a href="#vision"           class="nav__link">Vision</a></li>
+          <li><a href="#about"            class="nav__link">About</a></li>
+          <li><a href="#universe-preview" class="nav__link">Universe</a></li>
+          <li><a href="#features"         class="nav__link">Features</a></li>
+        </ul>
+
+        <!-- Desktop CTA: Custom Pill Button -->
+        <div class="nav__cta">
+          <a href="#universe-preview" class="btn btn--primary">
+            <span>Explore the universe</span>
+            <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <!-- Hamburger for Mobile -->
+        <button
+          id="nav-hamburger"
+          class="nav__hamburger"
+          aria-controls="nav-mobile"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <nav
+        id="nav-mobile"
+        class="nav__mobile"
+        aria-label="Mobile navigation"
+      >
+        <a href="#vision"           class="nav__mobile-link">Vision</a>
+        <a href="#about"            class="nav__mobile-link">About</a>
+        <a href="#universe-preview" class="nav__mobile-link">Universe</a>
+        <a href="#features"         class="nav__mobile-link">Features</a>
+        <a href="#universe-preview" class="btn btn--primary nav__mobile-cta">
+          <span>Explore the universe</span>
+          <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </nav>
+
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- ======================================================
+         MAIN HERO: OVERSIZED ADIVERSE + 3D LIQUID PURPLE TREE LOGO
+         - Yellow Studio Gradient (#FFF96B -> #FFF21A -> #F3D91A)
+         - Enormous Near-Black ADIVERSE Wordmark
+         - Exact Glossy Purple Liquid Tree Artwork (Centerpiece)
+         - Refined Custom Pill Buttons
+         ====================================================== -->
+    <section class="hero" aria-label="Adiverse Brand Hero">
+      <div class="hero__inner">
+
+        <!-- Top Eyebrow & Live Studio Badge -->
+        <div class="hero__meta reveal">
+          <div class="hero__eyebrow">
+            <span class="hero__eyebrow-line" aria-hidden="true"></span>
+            <span>Personal Academic Workspace</span>
+          </div>
+          <span class="hero__badge">Phase 1 Preview &bull; 2026</span>
+        </div>
+
+        <!-- Wordmark & 3D Tree Sculpture Layered Stage -->
+        <div class="hero__wordmark-stage reveal reveal--delay-1">
+
+          <!-- Enormous Brand Wordmark dominating the canvas -->
+          <h1 class="hero__big-title" aria-label="ADIVERSE">ADIVERSE</h1>
+
+          <!--
+            Exact 3D Glossy Liquid Purple Tree Brand Artwork (PRESERVED EXACTLY)
+            STRICT REQUIREMENT: NO CARD, NO CONTAINER, NO RECTANGLE BEHIND IT.
+            Floats directly over the yellow studio gradient canvas with transparent alpha channel.
+          -->
+          <div class="hero__sculpture-container" aria-hidden="true">
+            <img
+              src="assets/purple-tree-sculpture.png"
+              alt="Adiverse 3D Liquid Purple Tree Brand Logo"
+              class="hero__sculpture-img"
+              width="580"
+              height="480"
+              loading="eager"
+            />
+            <!-- Soft Organic Contact Ground Shadow -->
+            <div class="hero__sculpture-shadow"></div>
+
+            <!-- Floating Frosted Glass Concept Annotations (Complementary Accents) -->
+            <div class="hero__annotation hero__annotation--left">
+              <span>Connect Ideas</span>
+            </div>
+            <div class="hero__annotation hero__annotation--right">
+              <span>Grow Knowledge</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Lower Hero Grid: Tagline, Body Copy & Custom Pill CTAs -->
+        <div class="hero__footer-grid reveal reveal--delay-2">
+
+          <div class="hero__tagline-wrap">
+            <p class="hero__tagline">
+              YOUR KNOWLEDGE.<br />
+              <span>YOUR UNIVERSE.</span>
+            </p>
+            <p class="hero__body">
+              Build a living map of what you learn. Connect ideas, explore concepts,
+              and watch your understanding grow into a personal world of knowledge.
+            </p>
+          </div>
+
+          <div class="hero__cta-col">
+            <div class="hero__cta-group">
+              <a href="#universe-preview" class="btn btn--primary">
+                <span>EXPLORE THE UNIVERSE</span>
+                <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+              </a>
+              <a href="#vision" class="btn btn--ghost">
+                <span>DISCOVER THE VISION</span>
+              </a>
+            </div>
+            <span class="hero__sub-label">Aadi + Universe &bull; Designed for College Scholars</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         LIVING KNOWLEDGE UNIVERSE (Section C)
+         THE CONCEPT GRAPH (Distinct from Hero Tree Logo!)
+         ====================================================== -->
+    <section
+      id="universe-preview"
+      class="universe-preview universe-section"
+      aria-label="Knowledge Universe Explorer Demonstration"
+    >
+      <div class="container">
+
+        <div class="universe-preview__header">
+          <span class="eyebrow reveal">The Interactive Product Experience</span>
+          <h2 class="universe-preview__title reveal reveal--delay-1">
+            An interconnected cosmos of your subjects.
+          </h2>
+          <p class="universe-preview__subtitle reveal reveal--delay-2">
+            The Living Knowledge Universe is Adiverse's signature feature. Unlike flat documents,
+            each concept branches organically and forms real-time bridges across different chapters.
+          </p>
+        </div>
+
+        <!-- Detailed Architectural Concept Graph Frame (Genuine Frosted Glass) -->
+        <div
+          class="universe-preview__canvas reveal"
+          id="universe-canvas"
+          role="img"
+          aria-label="Structured radial knowledge diagram for Data Structures with 6 chapter branches: Arrays, Trees, Linked Lists, Graphs, Sorting, Recursion"
+        >
+          <!-- Translucent Frosted Glass Legend Overlay -->
+          <div class="universe-legend" aria-label="Knowledge Graph Legend">
+            <div class="universe-legend__item">
+              <span class="universe-legend__indicator universe-legend__indicator--cross" aria-hidden="true"></span>
+              <span>Cross-concept relation</span>
+            </div>
+            <div class="universe-legend__item">
+              <span class="universe-legend__indicator universe-legend__indicator--branch" aria-hidden="true"></span>
+              <span>Hierarchical branch</span>
+            </div>
+          </div>
+
+          <svg
+            viewBox="0 0 880 640"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <radialGradient id="canvasPurpleGlow" cx="50%" cy="48%" r="48%">
+                <stop offset="0%"   stop-color="#A66BEF" stop-opacity="0.20"/>
+                <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="bigNodeShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#171717" flood-opacity="0.22"/>
+              </filter>
+              <filter id="purpleShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#A66BEF" flood-opacity="0.40"/>
+              </filter>
+            </defs>
+
+            <!-- Atmospheric ambient backdrop -->
+            <ellipse cx="440" cy="310" rx="410" ry="280" fill="url(#canvasPurpleGlow)"/>
+
+            <!-- =================== EDGES =================== -->
+
+            <!-- Root to six chapters -->
+            <path class="graph-edge--animate" data-edge-from="root" data-edge-to="arrays"
+              d="M440,310 Q376,238 306,182"
+              stroke="#171717" stroke-width="2.5" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="root" data-edge-to="trees"
+              d="M440,310 Q480,228 514,162"
+              stroke="#171717" stroke-width="2.5" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="root" data-edge-to="linkedlists"
+              d="M440,310 Q358,306 276,304"
+              stroke="#171717" stroke-width="2.5" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="root" data-edge-to="graphs"
+              d="M440,310 Q518,310 596,310"
+              stroke="#171717" stroke-width="2.5" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="root" data-edge-to="sorting"
+              d="M440,310 Q440,400 440,480"
+              stroke="#171717" stroke-width="2.5" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="root" data-edge-to="recursion"
+              d="M440,310 Q372,376 304,434"
+              stroke="#171717" stroke-width="2.5" stroke-linecap="round"/>
+
+            <!-- Arrays concepts -->
+            <path class="graph-edge--animate" data-edge-from="arrays" data-edge-to="indexing"
+              d="M306,182 Q274,150 234,124"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="arrays" data-edge-to="traversal"
+              d="M306,182 Q292,146 274,114"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="arrays" data-edge-to="searching"
+              d="M306,182 Q316,148 324,118"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <!-- Trees concepts -->
+            <path class="graph-edge--animate" data-edge-from="trees" data-edge-to="binarytree"
+              d="M514,162 Q532,126 546,96"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="trees" data-edge-to="bst"
+              d="M514,162 Q574,138 628,124"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="trees" data-edge-to="dfs"
+              d="M514,162 Q584,158 648,158"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <!-- Linked Lists concepts -->
+            <path class="graph-edge--animate" data-edge-from="linkedlists" data-edge-to="nodes"
+              d="M276,304 Q236,278 196,258"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="linkedlists" data-edge-to="pointers"
+              d="M276,304 Q232,314 188,318"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <!-- Graphs concepts -->
+            <path class="graph-edge--animate" data-edge-from="graphs" data-edge-to="bfs"
+              d="M596,310 Q634,280 670,258"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="graphs" data-edge-to="dijkstra"
+              d="M596,310 Q638,322 678,332"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <!-- Sorting concepts -->
+            <path class="graph-edge--animate" data-edge-from="sorting" data-edge-to="mergesort"
+              d="M440,480 Q408,504 372,522"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="sorting" data-edge-to="quicksort"
+              d="M440,480 Q440,508 440,532"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="sorting" data-edge-to="heapsort"
+              d="M440,480 Q472,504 502,520"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <!-- Recursion concepts -->
+            <path class="graph-edge--animate" data-edge-from="recursion" data-edge-to="basecase"
+              d="M304,434 Q268,454 232,468"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <path class="graph-edge--animate" data-edge-from="recursion" data-edge-to="callstack"
+              d="M304,434 Q280,460 252,478"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round"/>
+
+            <!-- Cross-concept bridge connections -->
+            <path class="graph-edge--animate" data-edge-from="dfs" data-edge-to="bfs"
+              d="M648,158 Q692,208 670,258"
+              stroke="#A66BEF" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="5 6"/>
+
+            <path class="graph-edge--animate" data-edge-from="recursion" data-edge-to="dfs"
+              d="M304,434 Q476,302 648,158"
+              stroke="#A66BEF" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 6"/>
+
+            <path class="graph-edge--animate" data-edge-from="mergesort" data-edge-to="recursion"
+              d="M372,522 Q338,480 304,434"
+              stroke="#A66BEF" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 6"/>
+
+            <!-- =================== NODES =================== -->
+
+            <!-- ROOT: Solid Near-Black with Yellow Font -->
+            <g
+              class="graph-node--animate"
+              data-node-id="root"
+              tabindex="0"
+              role="img"
+              aria-label="Root Node: Data Structures"
+              style="cursor:pointer;"
+            >
+              <circle cx="440" cy="310" r="42" fill="#171717" filter="url(#bigNodeShadow)"/>
+              <text x="440" y="304" text-anchor="middle" fill="#F8F3A6" font-family="'DM Sans',sans-serif" font-size="11" font-weight="700">Data</text>
+              <text x="440" y="318" text-anchor="middle" fill="#F8F3A6" font-family="'DM Sans',sans-serif" font-size="11" font-weight="700">Structures</text>
+            </g>
+
+            <!-- CHAPTER NODES: Signature Purple #A66BEF -->
+            <g class="graph-node--animate" data-node-id="arrays"
+               tabindex="0" role="img" aria-label="Chapter: Arrays" style="cursor:pointer;">
+              <circle cx="306" cy="182" r="30" fill="#A66BEF" filter="url(#purpleShadow)"/>
+              <text x="306" y="186.5" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="11" font-weight="700">Arrays</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="trees"
+               tabindex="0" role="img" aria-label="Chapter: Trees" style="cursor:pointer;">
+              <circle cx="514" cy="162" r="30" fill="#A66BEF" filter="url(#purpleShadow)"/>
+              <text x="514" y="166.5" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="11" font-weight="700">Trees</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="linkedlists"
+               tabindex="0" role="img" aria-label="Chapter: Linked Lists" style="cursor:pointer;">
+              <circle cx="276" cy="304" r="30" fill="#A66BEF" filter="url(#purpleShadow)"/>
+              <text x="276" y="299" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700">Linked</text>
+              <text x="276" y="312" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="10" font-weight="700">Lists</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="graphs"
+               tabindex="0" role="img" aria-label="Chapter: Graphs" style="cursor:pointer;">
+              <circle cx="596" cy="310" r="30" fill="#A66BEF" filter="url(#purpleShadow)"/>
+              <text x="596" y="314.5" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="11" font-weight="700">Graphs</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="sorting"
+               tabindex="0" role="img" aria-label="Chapter: Sorting" style="cursor:pointer;">
+              <circle cx="440" cy="480" r="30" fill="#A66BEF" filter="url(#purpleShadow)"/>
+              <text x="440" y="484.5" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="11" font-weight="700">Sorting</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="recursion"
+               tabindex="0" role="img" aria-label="Chapter: Recursion" style="cursor:pointer;">
+              <circle cx="304" cy="434" r="30" fill="#A66BEF" filter="url(#purpleShadow)"/>
+              <text x="304" y="438.5" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="10.5" font-weight="700">Recursion</text>
+            </g>
+
+            <!-- CONCEPT NODES: White / Dark with Purple Interactive Sheen -->
+            <g class="graph-node--animate" data-node-id="indexing" tabindex="0" role="img" aria-label="Concept: Indexing" style="cursor:pointer;">
+              <circle cx="234" cy="124" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="234" y="128.5" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700">Indexing</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="traversal" tabindex="0" role="img" aria-label="Concept: Traversal" style="cursor:pointer;">
+              <circle cx="274" cy="114" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="274" y="118.5" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700">Traversal</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="searching" tabindex="0" role="img" aria-label="Concept: Searching" style="cursor:pointer;">
+              <circle cx="324" cy="118" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="324" y="122.5" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700">Searching</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="binarytree" tabindex="0" role="img" aria-label="Concept: Binary Tree" style="cursor:pointer;">
+              <circle cx="546" cy="96" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="546" y="92" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="8.5" font-weight="700">Binary</text>
+              <text x="546" y="103" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="8.5" font-weight="700">Tree</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="bst" tabindex="0" role="img" aria-label="Concept: BST" style="cursor:pointer;">
+              <circle cx="628" cy="124" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="628" y="128.5" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700">BST</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="dfs" tabindex="0" role="img" aria-label="Concept: DFS" style="cursor:pointer;">
+              <circle cx="648" cy="158" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="648" y="162.5" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700">DFS</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="nodes" tabindex="0" role="img" aria-label="Concept: Nodes" style="cursor:pointer;">
+              <circle cx="196" cy="258" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="196" y="262.5" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700">Nodes</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="pointers" tabindex="0" role="img" aria-label="Concept: Pointers" style="cursor:pointer;">
+              <circle cx="188" cy="318" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="188" y="322.5" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700">Pointers</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="bfs" tabindex="0" role="img" aria-label="Concept: BFS" style="cursor:pointer;">
+              <circle cx="670" cy="258" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="670" y="262.5" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="9" font-weight="700">BFS</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="dijkstra" tabindex="0" role="img" aria-label="Concept: Dijkstra" style="cursor:pointer;">
+              <circle cx="678" cy="332" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="678" y="328" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="8.5" font-weight="700">Dijkstra</text>
+              <text x="678" y="340" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="600">Algo</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="mergesort" tabindex="0" role="img" aria-label="Concept: Merge Sort" style="cursor:pointer;">
+              <circle cx="372" cy="522" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="372" y="518" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="8.5" font-weight="700">Merge</text>
+              <text x="372" y="530" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="600">Sort</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="quicksort" tabindex="0" role="img" aria-label="Concept: Quick Sort" style="cursor:pointer;">
+              <circle cx="440" cy="532" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="440" y="528" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="8.5" font-weight="700">Quick</text>
+              <text x="440" y="540" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="600">Sort</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="heapsort" tabindex="0" role="img" aria-label="Concept: Heap Sort" style="cursor:pointer;">
+              <circle cx="502" cy="520" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="502" y="516" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="8.5" font-weight="700">Heap</text>
+              <text x="502" y="528" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="600">Sort</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="basecase" tabindex="0" role="img" aria-label="Concept: Base Case" style="cursor:pointer;">
+              <circle cx="232" cy="468" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="232" y="464" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="8.5" font-weight="700">Base</text>
+              <text x="232" y="475" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="600">Case</text>
+            </g>
+
+            <g class="graph-node--animate" data-node-id="callstack" tabindex="0" role="img" aria-label="Concept: Call Stack" style="cursor:pointer;">
+              <circle cx="252" cy="478" r="18" fill="#FFFFFF" stroke="#171717" stroke-width="1.8"/>
+              <text x="252" y="474" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="8.5" font-weight="700">Call</text>
+              <text x="252" y="485" text-anchor="middle" fill="#171717" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="600">Stack</text>
+            </g>
+
+            <!-- Purple Indicator Halos -->
+            <circle cx="648" cy="158" r="4.5" fill="#A66BEF"/>
+            <circle cx="670" cy="258" r="4.5" fill="#A66BEF"/>
+            <circle cx="372" cy="522" r="4.5" fill="#A66BEF"/>
+
+          </svg>
+        </div>
+
+        <p class="universe-preview__caption reveal">
+          Interactive concept graph explorer &bull; Full editing engine coming in later phases
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         VISION (Section D)
+         ====================================================== -->
+    <section id="vision" class="vision" aria-label="Product Vision">
+      <div class="container">
+        <div class="vision__grid">
+
+          <div class="vision__left">
+            <span class="eyebrow reveal">Brand Philosophy</span>
+            <h2 class="vision__statement reveal reveal--delay-1">
+              Learning isn't a list.<br />
+              It's a <em>living structure.</em>
+            </h2>
+            <div class="vision__accent-line reveal reveal--delay-2" aria-hidden="true"></div>
+          </div>
+
+          <div class="vision__content">
+            <p class="vision__body reveal">
+              Most tools treat your notes as documents and your tasks as rows.
+              They help you store information but do nothing to reflect the
+              shape of your understanding. Adiverse is built on a different
+              premise: knowledge has geometry.
+            </p>
+
+            <div class="vision__detail reveal reveal--delay-1">
+              <svg class="vision__detail-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="4" fill="#171717"/>
+                <circle cx="4"  cy="6"  r="2.5" fill="#A66BEF"/>
+                <circle cx="18" cy="6"  r="2.5" fill="#A66BEF"/>
+                <circle cx="4"  cy="16" r="2.5" fill="#A66BEF"/>
+                <circle cx="18" cy="16" r="2.5" fill="#A66BEF"/>
+                <line x1="11" y1="7"  x2="4.5"  y2="6.5"  stroke="#171717" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="11" y1="7"  x2="17.5" y2="6.5"  stroke="#171717" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="11" y1="15" x2="4.5"  y2="15.5" stroke="#171717" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="11" y1="15" x2="17.5" y2="15.5" stroke="#171717" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              <div class="vision__detail-text">
+                <strong>Build your universe.</strong>
+                Start with a subject, add chapters, map concepts. Your knowledge
+                structure grows organically as you learn.
+              </div>
+            </div>
+
+            <div class="vision__detail reveal reveal--delay-2">
+              <svg class="vision__detail-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <path d="M4,11 Q11,4 18,11 Q11,18 4,11Z" stroke="#A66BEF" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                <circle cx="4"  cy="11" r="2.2" fill="#171717"/>
+                <circle cx="18" cy="11" r="2.2" fill="#171717"/>
+                <circle cx="11" cy="4"  r="2.2" fill="#A66BEF"/>
+                <circle cx="11" cy="18" r="2.2" fill="#A66BEF"/>
+              </svg>
+              <div class="vision__detail-text">
+                <strong>Connect the dots.</strong>
+                Draw meaningful relationships between concepts across different
+                subjects. See how ideas relate.
+              </div>
+            </div>
+
+            <div class="vision__detail reveal reveal--delay-3">
+              <svg class="vision__detail-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <rect x="3" y="13" width="4" height="7" rx="1.5" fill="#A66BEF"/>
+                <rect x="9" y="8"  width="4" height="12" rx="1.5" fill="#A66BEF"/>
+                <rect x="15" y="3" width="4" height="17" rx="1.5" fill="#171717"/>
+              </svg>
+              <div class="vision__detail-text">
+                <strong>Track your progress.</strong>
+                Know what you understand deeply, what you are still learning,
+                and what needs revision.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         ABOUT / HOW IT WORKS (Section E)
+         ====================================================== -->
+    <section id="about" class="how-it-works" aria-label="About and How It Works">
+      <div class="container">
+
+        <div class="how-it-works__header">
+          <span class="eyebrow reveal">Workflow</span>
+          <h2 class="how-it-works__title reveal reveal--delay-1">
+            Three steps to an organized mind
+          </h2>
+        </div>
+
+        <ol class="steps" role="list">
+
+          <li class="step reveal">
+            <div class="step__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="28" fill="#F8F3A6"/>
+                <rect x="20" y="22" width="24" height="5" rx="2" fill="#171717"/>
+                <rect x="20" y="31" width="18" height="4" rx="2" fill="#A66BEF"/>
+                <rect x="20" y="39" width="21" height="4" rx="2" fill="#171717" opacity="0.6"/>
+                <circle cx="44" cy="20" r="6" fill="#A66BEF"/>
+                <line x1="44" y1="17" x2="44" y2="23" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="41" y1="20" x2="47" y2="20" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="step__text">
+              <p class="step__number">01</p>
+              <h3 class="step__title">Organise your subjects</h3>
+              <p class="step__body">
+                Add the courses you are studying. Create chapters and structure your
+                curriculum the way you think about it.
+              </p>
+            </div>
+          </li>
+
+          <li class="step reveal reveal--delay-1">
+            <div class="step__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="28" fill="#F8F3A6"/>
+                <circle cx="22" cy="26" r="6" fill="#171717"/>
+                <circle cx="42" cy="26" r="6" fill="#A66BEF"/>
+                <circle cx="32" cy="44" r="6" fill="#171717"/>
+                <line x1="27" y1="28" x2="37" y2="28" stroke="#A66BEF" stroke-width="2" stroke-linecap="round"/>
+                <line x1="25" y1="31" x2="30" y2="39" stroke="#171717" stroke-width="2" stroke-linecap="round"/>
+                <line x1="39" y1="31" x2="34" y2="39" stroke="#A66BEF" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="step__text">
+              <p class="step__number">02</p>
+              <h3 class="step__title">Connect your concepts</h3>
+              <p class="step__body">
+                Map individual topics. Establish live connections between related
+                ideas, even across completely different chapters.
+              </p>
+            </div>
+          </li>
+
+          <li class="step reveal reveal--delay-2">
+            <div class="step__icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="28" fill="#F8F3A6"/>
+                <line x1="32" y1="46" x2="32" y2="32" stroke="#171717" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="32" y1="32" x2="22" y2="22" stroke="#A66BEF" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="32" y1="32" x2="42" y2="22" stroke="#A66BEF" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="22" y1="22" x2="16" y2="16" stroke="#171717" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="22" y1="22" x2="24" y2="15" stroke="#171717" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="42" y1="22" x2="40" y2="15" stroke="#171717" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="42" y1="22" x2="48" y2="16" stroke="#171717" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="32" cy="46" r="3" fill="#171717"/>
+                <circle cx="16" cy="16" r="2.5" fill="#A66BEF"/>
+                <circle cx="24" cy="15" r="2.5" fill="#A66BEF"/>
+                <circle cx="40" cy="15" r="2.5" fill="#A66BEF"/>
+                <circle cx="48" cy="16" r="2.5" fill="#A66BEF"/>
+                <circle cx="32" cy="32" r="4.5" fill="#171717"/>
+              </svg>
+            </div>
+            <div class="step__text">
+              <p class="step__number">03</p>
+              <h3 class="step__title">Grow your understanding</h3>
+              <p class="step__body">
+                As your semester progresses, your universe expands. Revisit
+                bridges and see your knowledge deepen into something tangible.
+              </p>
+            </div>
+          </li>
+
+        </ol>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         FEATURES (Section F)
+         ====================================================== -->
+    <section id="features" class="features" aria-label="Capabilities">
+      <div class="container">
+
+        <header class="features__header">
+          <span class="eyebrow reveal">Capabilities</span>
+          <h2 class="features__title reveal reveal--delay-1">
+            One workspace for your entire academic life
+          </h2>
+          <p class="features__subtitle reveal reveal--delay-2">
+            Adiverse is being developed carefully, one capability at a time.
+            Here is what is planned for the full product ecosystem.
+          </p>
+        </header>
+
+        <div class="features__grid">
+
+          <!-- Wide Card: Living Knowledge Universe -->
+          <article class="feature-card feature-card--wide reveal">
+            <div class="feature-card__text">
+              <span class="feature-card__tag">Signature Feature</span>
+              <div class="feature-card__icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="4" fill="#171717"/>
+                  <circle cx="5"  cy="6"  r="2.5" fill="#A66BEF"/>
+                  <circle cx="19" cy="6"  r="2.5" fill="#A66BEF"/>
+                  <circle cx="5"  cy="18" r="2.5" fill="#A66BEF"/>
+                  <circle cx="19" cy="18" r="2.5" fill="#A66BEF"/>
+                  <line x1="12" y1="8"  x2="6.5"  y2="7.5"  stroke="#171717" stroke-width="1.3" stroke-linecap="round"/>
+                  <line x1="12" y1="8"  x2="17.5" y2="7.5"  stroke="#171717" stroke-width="1.3" stroke-linecap="round"/>
+                  <line x1="12" y1="16" x2="6.5"  y2="16.5" stroke="#171717" stroke-width="1.3" stroke-linecap="round"/>
+                  <line x1="12" y1="16" x2="17.5" y2="16.5" stroke="#171717" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="feature-card__title">Living Knowledge Universe</h3>
+              <p class="feature-card__body">
+                An interactive, editable knowledge graph for each subject.
+                Add concepts, build branches, connect related ideas across
+                chapters, and watch your subject's structure take shape.
+                Designed to remain navigable as your understanding grows.
+              </p>
+            </div>
+            <div class="feature-card__visual" aria-hidden="true">
+              <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:210px;">
+                <circle cx="100" cy="74" r="18" fill="#171717"/>
+                <text x="100" y="78" text-anchor="middle" fill="#F8F3A6" font-family="'DM Sans',sans-serif" font-size="8" font-weight="700">Subject</text>
+                <path d="M100,56 Q80,40 56,28" stroke="#171717" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M100,56 Q118,40 142,28" stroke="#171717" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M82,74 Q62,74 42,74" stroke="#171717" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M100,92 Q100,112 100,126" stroke="#171717" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="56"  cy="28"  r="13" fill="#A66BEF"/>
+                <text x="56" y="32" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="700">Arrays</text>
+                <circle cx="142" cy="28"  r="13" fill="#A66BEF"/>
+                <text x="142" y="32" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="700">Trees</text>
+                <circle cx="42"  cy="74"  r="13" fill="#A66BEF"/>
+                <text x="42" y="78" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="700">Lists</text>
+                <circle cx="100" cy="126" r="13" fill="#A66BEF"/>
+                <text x="100" y="130" text-anchor="middle" fill="#FFFFFF" font-family="'DM Sans',sans-serif" font-size="7.5" font-weight="700">Sorting</text>
+                <path d="M142,40 Q154,64 150,74" stroke="#A66BEF" stroke-width="1.4" stroke-dasharray="3 4"/>
+                <circle cx="150" cy="74" r="7" fill="#FFFFFF" stroke="#171717" stroke-width="1.3"/>
+              </svg>
+            </div>
+          </article>
+
+          <!-- Notes & Resources -->
+          <article class="feature-card reveal">
+            <span class="feature-card__tag">Planned</span>
+            <div class="feature-card__icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="4" y="2" width="14" height="18" rx="2" stroke="#171717" stroke-width="1.6"/>
+                <line x1="8"  y1="7"  x2="14" y2="7"  stroke="#A66BEF" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="8"  y1="11" x2="14" y2="11" stroke="#A66BEF" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="8"  y1="15" x2="11" y2="15" stroke="#171717" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="feature-card__title">Notes attached to ideas</h3>
+            <p class="feature-card__body">
+              Every concept node holds your notes, reference links, and
+              resources. No more hunting through separate documents to find
+              what you wrote about a specific idea.
+            </p>
+          </article>
+
+          <!-- Revision & Progress -->
+          <article class="feature-card reveal reveal--delay-1">
+            <span class="feature-card__tag">Planned</span>
+            <div class="feature-card__icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="3"  y="14" width="4" height="6" rx="1.5" fill="#A66BEF"/>
+                <rect x="9"  y="9"  width="4" height="11" rx="1.5" fill="#A66BEF"/>
+                <rect x="15" y="4"  width="4" height="16" rx="1.5" fill="#171717"/>
+              </svg>
+            </div>
+            <h3 class="feature-card__title">Learning progress at a glance</h3>
+            <p class="feature-card__body">
+              Mark concepts as learning, understood, or needing revision. The
+              universe will reflect your progress visually, so you always know
+              where to focus next.
+            </p>
+          </article>
+
+          <!-- Assignments -->
+          <article class="feature-card reveal reveal--delay-1">
+            <span class="feature-card__tag">Planned</span>
+            <div class="feature-card__icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="2" y="4" width="18" height="16" rx="2" stroke="#171717" stroke-width="1.6"/>
+                <line x1="2" y1="8.5" x2="20" y2="8.5" stroke="#171717" stroke-width="1.6"/>
+                <line x1="7"  y1="1.5" x2="7"  y2="5.5" stroke="#171717" stroke-width="1.6" stroke-linecap="round"/>
+                <line x1="15" y1="1.5" x2="15" y2="5.5" stroke="#171717" stroke-width="1.6" stroke-linecap="round"/>
+                <line x1="6"  y1="13" x2="10" y2="13" stroke="#A66BEF" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="6"  y1="16" x2="13" y2="16" stroke="#A66BEF" stroke-width="1.4" stroke-linecap="round"/>
+                <circle cx="16.5" cy="14.5" r="2.5" fill="#A66BEF"/>
+              </svg>
+            </div>
+            <h3 class="feature-card__title">Assignments and deadlines</h3>
+            <p class="feature-card__body">
+              Track submissions, due dates, and coursework in one organized
+              place that connects directly to the subjects in your universe.
+            </p>
+          </article>
+
+          <!-- Academic overview -->
+          <article class="feature-card reveal reveal--delay-2">
+            <span class="feature-card__tag">Planned</span>
+            <div class="feature-card__icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="2" y="2" width="18" height="18" rx="3" stroke="#171717" stroke-width="1.6"/>
+                <circle cx="11" cy="11" r="5" stroke="#A66BEF" stroke-width="1.4"/>
+                <circle cx="11" cy="11" r="2" fill="#171717"/>
+                <line x1="11" y1="6"  x2="11" y2="2"  stroke="#A66BEF" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="16" y1="11" x2="20" y2="11" stroke="#A66BEF" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="feature-card__title">A clearer academic overview</h3>
+            <p class="feature-card__body">
+              Open Adiverse and immediately understand what you are learning,
+              what is due, and where to continue. Your workspace gives you
+              context, not just a list.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         CLOSING CTA (Section G)
+         ====================================================== -->
+    <section class="closing-cta" aria-label="Get Started">
+      <div class="closing-cta__inner">
+
+        <span class="eyebrow closing-cta__eyebrow reveal">Build Your World</span>
+
+        <h2 class="closing-cta__title reveal reveal--delay-1">
+          Make room for<br />what you're learning.
+        </h2>
+
+        <p class="closing-cta__body reveal reveal--delay-2">
+          Adiverse is a personal academic workspace being built for college students
+          who want to see their knowledge grow into something real and navigable.
+        </p>
+
+        <div class="closing-cta__actions reveal reveal--delay-3">
+          <a href="#universe-preview" class="btn btn--light">
+            <span>EXPLORE THE UNIVERSE</span>
+            <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#vision" class="btn btn--outline-light">
+            <span>READ THE VISION</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ======================================================
+         FOOTER (Section H)
+         ====================================================== -->
+  <footer class="footer" role="contentinfo">
+
+    <div class="footer__inner">
+
+      <div class="footer__brand">
+        <p class="footer__wordmark">ADIVERSE</p>
+        <p class="footer__description">
+          A personal academic workspace for college scholars. Your knowledge, made visible.
+        </p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <div class="footer__nav-group">
+          <p class="footer__nav-label">Product</p>
+          <ul class="footer__nav-links" role="list">
+            <li><a href="#vision"           class="footer__nav-link">Vision</a></li>
+            <li><a href="#about"            class="footer__nav-link">About</a></li>
+            <li><a href="#universe-preview" class="footer__nav-link">Universe</a></li>
+            <li><a href="#features"         class="footer__nav-link">Features</a></li>
+          </ul>
+        </div>
+        <div class="footer__nav-group">
+          <p class="footer__nav-label">Experience</p>
+          <ul class="footer__nav-links" role="list">
+            <li><a href="#universe-preview" class="footer__nav-link">Knowledge mapping</a></li>
+            <li><a href="#features"         class="footer__nav-link">Progress tracking</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__tagline">YOUR KNOWLEDGE. YOUR UNIVERSE.</p>
+      <p class="footer__legal">Adiverse &copy; 2026. Built with intention.</p>
+    </div>
+
+  </footer>
+
+  <script src="js/landing.js"></script>
+
+</body>
+</html>

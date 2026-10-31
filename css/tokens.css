@@ -1,0 +1,182 @@
+/* ============================================================
+   ADIVERSE  -  DESIGN TOKENS
+   Refined Brand Identity & Studio Lighting:
+   - Studio Yellow Gradient (#FFF96B center -> #FFF21A main -> #F3D91A warm perimeter)
+   - Heavy Bold Typography (#171717)
+   - Glossy Liquid Purple Tree Accent (#A66BEF)
+   - Custom Pill Button Architecture
+   - Translucent Frosted Glass with Delicate Borders
+   ============================================================ */
+
+:root {
+
+  /* --- Official Adiverse Brand Colors: Soft Pastel Yellow Foundation --- */
+  --color-pastel-yellow: #F8F3A6;  /* Main pastel yellow */
+  --color-light-yellow:  #FFFBE0;  /* Soft light illuminated yellow */
+  --color-warm-yellow:   #F5EFA0;  /* Warm golden pastel tone */
+  --color-bg-primary:    var(--color-pastel-yellow);
+  --color-bg-secondary:  var(--color-light-yellow);
+  --color-bg-warm:       var(--color-warm-yellow);
+  --color-bg:            var(--color-pastel-yellow);
+  --color-bg-light:      var(--color-light-yellow);
+  --color-bg-deep:       var(--color-warm-yellow);
+  --color-bg-alt:        transparent; /* Seamless section transitions */
+  
+  /* Seamless Page-Level Pastel Yellow Gradient System */
+  --page-bg-gradient:
+    radial-gradient(
+      ellipse at 50% 20%,
+      var(--color-light-yellow) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-pastel-yellow) 0%,
+      var(--color-warm-yellow) 100%
+    );
+
+  --hero-bg-gradient: var(--page-bg-gradient);
+  --section-bg-gradient: transparent;
+
+  /* --- Subtle Academic Technical Grid Pattern --- */
+  --grid-line-color: rgba(23, 23, 23, 0.045);
+  --grid-size: 44px;
+  --grid-pattern:
+    linear-gradient(var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
+
+  /* --- Typography & Text --- */
+  --color-text:          #171717;  /* High contrast near-black */
+  --color-text-muted:    #333333;  /* Crisp readable dark neutral */
+  --color-text-subtle:   #555555;  /* Subtle metadata */
+  --color-dark:          #171717;  /* Solid near-black buttons & root nodes */
+  --color-dark-hover:    #000000;
+  --color-white:         #FFFFFF;
+
+  /* --- Signature Liquid Purple (#A66BEF) --- */
+  --color-purple:        #A66BEF;  /* Exact signature purple */
+  --color-purple-deep:   #8840E8;  /* Deep liquid tone */
+  --color-purple-light:  #C498F7;  /* Specular sheen */
+  --color-purple-tint:   rgba(166, 107, 239, 0.16);
+  --color-purple-glow:   rgba(166, 107, 239, 0.45);
+  --color-accent:        var(--color-purple);
+  --color-accent-hover:  var(--color-purple-deep);
+
+  /* --- Borders & Dividers --- */
+  --color-border:        rgba(23, 23, 23, 0.16);
+  --color-border-subtle: rgba(23, 23, 23, 0.08);
+  --color-border-dark:   #171717;
+
+  /* --- Typography Families --- */
+  --font-display: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif:   'Cormorant Garamond', 'Georgia', serif;
+  --font-sans:    'DM Sans', 'Inter', system-ui, sans-serif;
+
+  /* Type Scale */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-md:    1.125rem;   /* 18px */
+  --text-lg:    1.25rem;    /* 20px */
+  --text-xl:    1.5rem;     /* 24px */
+  --text-2xl:   2.25rem;    /* 36px */
+  --text-3xl:   3.25rem;    /* 52px */
+  --text-4xl:   4.5rem;     /* 72px */
+  --text-5xl:   6.5rem;     /* 104px */
+  --text-hero:  clamp(4rem, 13vw, 12rem); /* Massive hero wordmark */
+
+  --leading-tight:   1.04;
+  --leading-snug:    1.2;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    900;
+
+  /* --- Spacing Scale --- */
+  --space-1:   0.25rem;   /*  4px */
+  --space-2:   0.5rem;    /*  8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+  --space-32:  8rem;      /* 128px */
+
+  /* --- Refined Corner Radii --- */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-pill: 9999px;   /* Custom Pill Buttons & Badges */
+  --radius-full: 9999px;
+
+  /* --- Shadows & Glows --- */
+  --shadow-xs:     0 1px 3px rgba(23, 23, 23, 0.08);
+  --shadow-sm:     0 3px 10px rgba(23, 23, 23, 0.10);
+  --shadow-md:     0 8px 24px rgba(23, 23, 23, 0.12);
+  --shadow-lg:     0 16px 40px rgba(23, 23, 23, 0.15);
+  --shadow-lift:   0 12px 28px rgba(23, 23, 23, 0.22);
+  --shadow-purple: 0 8px 30px rgba(166, 107, 239, 0.40);
+  --sculpture-contact-shadow: radial-gradient(ellipse at 50% 50%, rgba(23, 23, 23, 0.35) 0%, rgba(23, 23, 23, 0) 70%);
+
+  /* --- Genuine Glassmorphism System --- */
+  --glass-panel-bg:        rgba(255, 255, 255, 0.28);
+  --glass-panel-blur:      blur(24px) saturate(140%);
+  --glass-panel-border:    1px solid rgba(255, 255, 255, 0.60);
+  --glass-panel-shadow:    0 12px 36px rgba(23, 23, 23, 0.06),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.58);
+
+  --glass-legend-bg:       rgba(255, 251, 224, 0.40);
+  --glass-legend-blur:     blur(18px) saturate(140%);
+  --glass-legend-border:   1px solid rgba(255, 255, 255, 0.65);
+  --glass-legend-shadow:   0 4px 16px rgba(23, 23, 23, 0.04),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.65);
+
+  --glass-label-bg:        rgba(255, 251, 224, 0.40);
+  --glass-label-blur:      blur(20px) saturate(140%);
+  --glass-label-border:    1px solid rgba(255, 255, 255, 0.65);
+  --glass-label-shadow:    0 6px 20px rgba(23, 23, 23, 0.05),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.65);
+
+  /* Scroll-Aware Translucent Glass Navbar */
+  --glass-nav-bg:          rgba(255, 251, 224, 0.42);
+  --glass-nav-blur:        blur(24px) saturate(145%);
+  --glass-nav-border:      rgba(255, 255, 255, 0.35);
+  --glass-nav-shadow:      0 6px 24px rgba(23, 23, 23, 0.035),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.40);
+
+  --glass-nav-scroll-bg:   rgba(255, 251, 224, 0.30);
+  --glass-nav-scroll-blur: blur(28px) saturate(150%);
+  --glass-nav-scroll-border: rgba(255, 255, 255, 0.28);
+  --glass-nav-scroll-shadow: 0 8px 28px rgba(23, 23, 23, 0.055);
+
+  --glass-bg:              rgba(255, 255, 255, 0.30);
+  --glass-bg-card:         rgba(255, 255, 255, 0.28);
+  --glass-border:          rgba(255, 255, 255, 0.58);
+  --glass-border-subtle:   rgba(255, 255, 255, 0.40);
+  --glass-blur:            blur(24px) saturate(140%);
+  --glass-blur-sm:         blur(14px) saturate(135%);
+  --glass-shadow:          0 12px 36px rgba(23, 23, 23, 0.06),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.55);
+
+  /* --- Transitions --- */
+  --transition-fast:    150ms ease;
+  --transition-base:    220ms ease;
+  --transition-slow:    380ms ease;
+  --transition-gentle:  560ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-spring:  300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* --- Layout --- */
+  --container-max:  1280px;
+  --container-wide: 1480px;
+  --nav-height:     74px;
+}

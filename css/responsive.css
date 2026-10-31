@@ -1,0 +1,335 @@
+/* ============================================================
+   ADIVERSE  -  RESPONSIVE
+   Mobile, Tablet, and Desktop Breakpoint Rules
+   ============================================================ */
+
+/* ============================================================
+   TABLET  -  max 1024px
+   ============================================================ */
+@media (max-width: 1024px) {
+
+  :root {
+    --nav-height: 64px;
+    --text-hero: clamp(3.5rem, 11vw, 7rem);
+  }
+
+  .nav__links,
+  .nav__cta {
+    display: none;
+  }
+
+  .nav__hamburger {
+    display: flex;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--nav-height) + var(--space-6));
+    padding-bottom: var(--space-12);
+  }
+
+  .hero__sculpture-container {
+    max-width: 440px;
+    height: 380px;
+    margin-top: -3vw;
+    margin-bottom: 1vw;
+  }
+
+  .hero__footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    text-align: center;
+  }
+
+  .hero__body {
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+
+  .hero__cta-col {
+    align-items: center;
+  }
+
+  .hero__cta-group {
+    justify-content: center;
+  }
+
+  .hero__annotation--left {
+    left: 2%;
+  }
+
+  .hero__annotation--right {
+    right: 2%;
+  }
+
+  .vision__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .feature-card--wide {
+    grid-template-columns: 1fr;
+    grid-column: span 2;
+  }
+
+  .feature-card__visual {
+    min-height: 160px;
+  }
+
+  .universe-preview__canvas {
+    padding: var(--space-6);
+  }
+}
+
+
+/* ============================================================
+   MOBILE  -  max 680px
+   ============================================================ */
+@media (max-width: 680px) {
+
+  :root {
+    --text-hero: clamp(2.4rem, 12vw, 4.2rem);
+  }
+
+  .bg-grid {
+    background-size: 32px 32px;
+    -webkit-mask-image: radial-gradient(
+      ellipse 320px 280px at 50% 360px,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0.50) 50%,
+      rgba(0, 0, 0, 1) 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 320px 280px at 50% 360px,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0.50) 50%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+
+  .container {
+    padding-inline: var(--space-4);
+  }
+
+  .nav__inner {
+    padding-inline: var(--space-4);
+  }
+
+  .nav__mobile {
+    padding-inline: var(--space-4);
+  }
+
+  .hero {
+    padding-top: calc(var(--nav-height) + var(--space-4));
+    padding-bottom: var(--space-10);
+    min-height: auto;
+  }
+
+  .hero__inner {
+    padding-inline: var(--space-4);
+  }
+
+  .hero__wordmark {
+    letter-spacing: 0.02em;
+  }
+
+  .hero__meta {
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero__eyebrow {
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    justify-content: center;
+  }
+
+  .hero__sub-label {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero__sculpture-container {
+    max-width: 290px;
+    height: 260px;
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero__annotation {
+    display: none; /* Hide floating annotations on compact mobile */
+  }
+
+  .hero__tagline {
+    font-size: 1.45rem;
+  }
+
+  .hero__actions,
+  .hero__cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero__cta-group .btn {
+    width: 100%;
+  }
+
+  .hero__sub-label {
+    text-align: center;
+    font-size: 10px;
+  }
+
+  .universe-preview {
+    padding-block: var(--space-14);
+  }
+
+  .universe-preview__title {
+    font-size: clamp(1.6rem, 6.8vw, 2.2rem);
+    line-height: 1.2;
+  }
+
+  .universe-preview__subtitle {
+    font-size: var(--text-sm);
+  }
+
+  .universe-preview__canvas {
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .universe-legend {
+    position: static;
+    margin-bottom: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 12px;
+    width: fit-content;
+  }
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .steps::before {
+    display: none;
+  }
+
+  .step {
+    padding: var(--space-5) var(--space-4);
+    text-align: left;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: var(--space-4);
+  }
+
+  .step__icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0;
+  }
+
+  .step__text {
+    flex: 1;
+  }
+
+  .features {
+    padding-block: var(--space-16);
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .feature-card--wide {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+  }
+
+  .vision {
+    padding-block: var(--space-16);
+  }
+
+  .vision__grid {
+    gap: var(--space-6);
+  }
+
+  .how-it-works {
+    padding-block: var(--space-16);
+  }
+
+  .section     { padding-block: var(--space-14); }
+  .section--lg { padding-block: var(--space-16); }
+  .closing-cta { padding-block: var(--space-16); }
+
+  .closing-cta__actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 280px;
+    margin-inline: auto;
+  }
+
+  .closing-cta__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    gap: var(--space-8);
+    padding-inline: var(--space-5);
+  }
+
+  .footer__bottom {
+    padding-inline: var(--space-5);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .footer__nav {
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .graph-node--animate,
+  .graph-edge--animate {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn,
+  .feature-card,
+  .vision__detail,
+  .step,
+  .hero__annotation,
+  .hero__sculpture-img {
+    transition: none !important;
+    transform: none !important;
+  }
+}
