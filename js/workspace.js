@@ -38,14 +38,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const zoomOutBtn = document.getElementById('zoom-out-btn');
   const recenterBtn = document.getElementById('recenter-btn');
 
-  // --- Tree State ---
-  let nodes = [
+  // --- Tree State & Persistence ---
+  const DEFAULT_NODES = [
     { id: 'root', title: 'My Knowledge', x: 0, y: 0, isRoot: true, parentId: null },
     { id: 'n1',   title: 'Data Structures', x: -180, y: -110, isRoot: false, parentId: 'root' },
     { id: 'n2',   title: 'Algorithms',      x: 180,  y: -110, isRoot: false, parentId: 'root' },
     { id: 'n3',   title: 'Computer Systems',x: -160, y: 120,  isRoot: false, parentId: 'root' },
     { id: 'n4',   title: 'Mathematics',     x: 160,  y: 120,  isRoot: false, parentId: 'root' }
   ];
+
+  function loadNodes() {
+    try {
+      const stored = localStorage.getItem('adiverse_tree_nodes');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
+    return DEFAULT_NODES;
+  }
+
+  function persistNodes() {
+    try {
+      localStorage.setItem('adiverse_tree_nodes', JSON.stringify(nodes));
+    } catch (e) {}
+  }
+
+  let nodes = loadNodes();
 
   let selectedNodeId = 'root';
   let dialogMode = 'edit'; // 'edit' or 'add'
@@ -294,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     closeDialog();
+    persistNodes();
     renderTree();
   }
 
@@ -315,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nodes = nodes.filter(n => !toDelete.has(n.id));
     selectedNodeId = 'root';
+    persistNodes();
     renderTree();
   }
 
@@ -470,4 +491,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial load
   centerViewport();
   renderTree();
+
+  // Expose Workspace API for Global Search & Navigation
+  window.AdiverseWorkspace = {
+    getNodes: () => nodes,
+    selectNode: (id) => {
+      selectedNodeId = id;
+      renderTree();
+    }
+  };
 });

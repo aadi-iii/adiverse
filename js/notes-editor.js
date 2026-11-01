@@ -61,6 +61,11 @@ window.AdiverseNotes = (function () {
   function openTopic(nodeId, nodeTitle) {
     if (!nodeId) return;
 
+    // Save previous note if switching directly from one topic to another
+    if (activeNodeId && activeNodeId !== nodeId) {
+      saveCurrentNote(true);
+    }
+
     activeNodeId = nodeId;
     activeNodeTitle = nodeTitle || 'Topic Notes';
 
@@ -443,7 +448,9 @@ window.AdiverseNotes = (function () {
   return {
     init,
     openTopic,
-    closeTopic
+    closeTopic,
+    saveCurrentNote,
+    getActiveNodeId: () => activeNodeId
   };
 })();
 
