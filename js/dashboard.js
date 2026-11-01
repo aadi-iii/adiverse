@@ -89,6 +89,8 @@ window.AdiverseDashboard = (function () {
 
     const assignmentsView = document.getElementById('assignments-workspace-view');
     const revisionView = document.getElementById('revision-workspace-view');
+    const resourcesView = document.getElementById('resources-workspace-view');
+    const progressView = document.getElementById('progress-workspace-view');
 
     if (viewName === 'dashboard') {
       if (notesView) {
@@ -101,6 +103,8 @@ window.AdiverseDashboard = (function () {
       if (stage) stage.style.display = 'none';
       if (assignmentsView) assignmentsView.style.display = 'none';
       if (revisionView) revisionView.style.display = 'none';
+      if (resourcesView) resourcesView.style.display = 'none';
+      if (progressView) progressView.style.display = 'none';
       if (dashboardView) dashboardView.style.display = 'block';
 
       if (eyebrow) eyebrow.textContent = 'Cosmos Overview';
@@ -122,6 +126,8 @@ window.AdiverseDashboard = (function () {
       if (dashboardView) dashboardView.style.display = 'none';
       if (assignmentsView) assignmentsView.style.display = 'none';
       if (revisionView) revisionView.style.display = 'none';
+      if (resourcesView) resourcesView.style.display = 'none';
+      if (progressView) progressView.style.display = 'none';
       if (stage) stage.style.display = 'flex';
 
       if (eyebrow) eyebrow.textContent = 'Academic Workspace';
@@ -137,6 +143,14 @@ window.AdiverseDashboard = (function () {
     } else if (viewName === 'revision') {
       if (window.AdiverseFlashcards && typeof window.AdiverseFlashcards.show === 'function') {
         window.AdiverseFlashcards.show();
+      }
+    } else if (viewName === 'resources') {
+      if (window.AdiverseResources && typeof window.AdiverseResources.show === 'function') {
+        window.AdiverseResources.show();
+      }
+    } else if (viewName === 'progress') {
+      if (window.AdiverseProgress && typeof window.AdiverseProgress.show === 'function') {
+        window.AdiverseProgress.show();
       }
     }
   }

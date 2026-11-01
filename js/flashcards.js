@@ -356,6 +356,10 @@ window.AdiverseFlashcards = (function () {
     if (stage) stage.style.display = 'none';
     if (dashboardView) dashboardView.style.display = 'none';
     if (assignmentsView) assignmentsView.style.display = 'none';
+    const resourcesView = document.getElementById('resources-workspace-view');
+    if (resourcesView) resourcesView.style.display = 'none';
+    const progressView = document.getElementById('progress-workspace-view');
+    if (progressView) progressView.style.display = 'none';
 
     if (revisionView) {
       revisionView.style.display = 'flex';
