@@ -55,6 +55,8 @@ window.AdiverseNotes = (function () {
     textColor: '#171717'
   };
 
+  let currentTheme = Object.assign({}, defaultTheme);
+
   // --- 1. OPEN & CLOSE TOPIC NOTES ---
   function openTopic(nodeId, nodeTitle) {
     if (!nodeId) return;
@@ -131,14 +133,13 @@ window.AdiverseNotes = (function () {
   }
 
   function loadNoteTheme(nodeId) {
-    if (!documentCard) return;
-    let theme = defaultTheme;
+    currentTheme = Object.assign({}, defaultTheme);
     try {
       const rawTheme = localStorage.getItem(getThemeKey(nodeId));
-      if (rawTheme) theme = Object.assign({}, defaultTheme, JSON.parse(rawTheme));
+      if (rawTheme) currentTheme = Object.assign({}, defaultTheme, JSON.parse(rawTheme));
     } catch (e) {}
 
-    applyThemeToDocument(theme);
+    applyThemeToDocument(currentTheme);
   }
 
   function applyThemeToDocument(theme) {
@@ -185,14 +186,8 @@ window.AdiverseNotes = (function () {
     const content = editorBody.innerHTML;
     localStorage.setItem(getStorageKey(activeNodeId), content);
 
-    // Save Theme
-    const theme = {
-      fontFamily: documentCard.style.fontFamily || defaultTheme.fontFamily,
-      fontSize: documentCard.style.fontSize || defaultTheme.fontSize,
-      bgColor: documentCard.style.backgroundColor || defaultTheme.bgColor,
-      textColor: documentCard.style.color || defaultTheme.textColor
-    };
-    localStorage.setItem(getThemeKey(activeNodeId), JSON.stringify(theme));
+    // Save Theme Object
+    localStorage.setItem(getThemeKey(activeNodeId), JSON.stringify(currentTheme));
 
     updateSaveIndicator(true);
   }
@@ -315,8 +310,8 @@ window.AdiverseNotes = (function () {
     // Font Family Select
     if (fontSelect) {
       fontSelect.addEventListener('change', () => {
-        const font = fontSelect.value;
-        if (documentCard) documentCard.style.fontFamily = font;
+        currentTheme.fontFamily = fontSelect.value;
+        applyThemeToDocument(currentTheme);
         saveCurrentNote();
       });
     }
@@ -324,8 +319,8 @@ window.AdiverseNotes = (function () {
     // Font Size Select
     if (sizeSelect) {
       sizeSelect.addEventListener('change', () => {
-        const size = sizeSelect.value;
-        if (documentCard) documentCard.style.fontSize = size;
+        currentTheme.fontSize = sizeSelect.value;
+        applyThemeToDocument(currentTheme);
         saveCurrentNote();
       });
     }
@@ -334,6 +329,7 @@ window.AdiverseNotes = (function () {
     if (textColorInput) {
       textColorInput.addEventListener('input', () => {
         const color = textColorInput.value;
+        currentTheme.textColor = color;
         if (textColorIndicator) textColorIndicator.style.backgroundColor = color;
         exec('foreColor', color);
       });
@@ -411,12 +407,13 @@ window.AdiverseNotes = (function () {
     themeSwatches.forEach(swatch => {
       swatch.addEventListener('click', () => {
         const bgColor = swatch.getAttribute('data-bg-color');
-        if (documentCard) {
-          documentCard.style.backgroundColor = bgColor;
-          documentCard.style.color = (bgColor === '#171717') ? '#FFFCA8' : '#171717';
+        currentTheme.bgColor = bgColor;
+        if (bgColor === '#171717') {
+          currentTheme.textColor = '#FFFCA8';
+        } else {
+          currentTheme.textColor = '#171717';
         }
-        themeSwatches.forEach(s => s.classList.remove('active'));
-        swatch.classList.add('active');
+        applyThemeToDocument(currentTheme);
         saveCurrentNote();
       });
     });
@@ -425,12 +422,20 @@ window.AdiverseNotes = (function () {
     if (customBgColorInput) {
       customBgColorInput.addEventListener('input', () => {
         const color = customBgColorInput.value;
-        if (documentCard) {
-          documentCard.style.backgroundColor = color;
-          documentCard.style.color = '#171717';
-        }
-        themeSwatches.forEach(s => s.classList.remove('active'));
+        currentTheme.bgColor = color;
+        currentTheme.textColor = '#171717';
+        applyThemeToDocument(currentTheme);
         saveCurrentNote();
+      });
+    }
+
+    // Keyboard Shortcuts inside Editor
+    if (editorBody) {
+      editorBody.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+          e.preventDefault();
+          saveCurrentNote(true);
+        }
       });
     }
   }
