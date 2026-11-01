@@ -73,6 +73,8 @@ window.AdiverseNotes = (function () {
     if (stage) stage.style.display = 'none';
     const dashboardView = document.getElementById('dashboard-workspace-view');
     if (dashboardView) dashboardView.style.display = 'none';
+    const assignmentsView = document.getElementById('assignments-workspace-view');
+    if (assignmentsView) assignmentsView.style.display = 'none';
     if (notesView) {
       notesView.style.display = 'flex';
       notesView.classList.add('is-active');

@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="css/workspace.css" />
   <link rel="stylesheet" href="css/notes-editor.css" />
   <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/assignments.css" />
 </head>
 <body class="workspace-shell">
 
@@ -77,10 +78,27 @@
             <span>Dashboard</span>
           </button>
 
-          <button id="nav-explore" class="workspace-nav-item" type="button" title="Explore">
+          <button id="nav-assignments" class="workspace-nav-item" type="button" title="Assignments &amp; Deadlines">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <path d="m9 16 2 2 4-4"></path>
+            </svg>
+            <span>Assignments</span>
+          </button>
 
-          <button class="workspace-nav-item" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button id="nav-explore" class="workspace-nav-item" type="button" title="Explore">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+            <span>Explore</span>
+          </button>
+
+          <button class="workspace-nav-item" type="button" title="Settings">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="3"></circle>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
             </svg>
@@ -543,6 +561,217 @@
       </div>
     </section>
 
+    <!-- Assignments & Deadlines Workspace View -->
+    <section id="assignments-workspace-view" class="assignments-workspace-view" style="display: none;" aria-label="Assignments and Deadlines Tracker">
+      <div class="assignments-container">
+
+        <!-- Header -->
+        <div class="assignments-header">
+          <div class="assignments-header-text">
+            <span class="assignments-eyebrow">Academic Milestones</span>
+            <h1 class="assignments-heading">Assignments &amp; Deadlines</h1>
+            <p class="assignments-subheading">Track coursework, problem sets, and milestones across your academic universe.</p>
+          </div>
+          <button id="btn-create-assignment" class="btn btn--primary" type="button" style="padding: 0.75rem 1.6rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>New Assignment</span>
+          </button>
+        </div>
+
+        <!-- Metrics Overview Cards -->
+        <div class="assignments-stats-grid">
+          <div class="assign-stat-card assign-stat-card--overdue">
+            <div class="stat-icon stat-icon--overdue">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div class="stat-body">
+              <span class="stat-label">Overdue</span>
+              <span id="stat-overdue-count" class="stat-value">0</span>
+            </div>
+          </div>
+
+          <div class="assign-stat-card assign-stat-card--upcoming">
+            <div class="stat-icon stat-icon--upcoming">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="stat-body">
+              <span class="stat-label">Upcoming (7 Days)</span>
+              <span id="stat-upcoming-count" class="stat-value">0</span>
+            </div>
+          </div>
+
+          <div class="assign-stat-card">
+            <div class="stat-icon stat-icon--progress">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="stat-body">
+              <span class="stat-label">In Progress</span>
+              <span id="stat-progress-count" class="stat-value">0</span>
+            </div>
+          </div>
+
+          <div class="assign-stat-card assign-stat-card--completed">
+            <div class="stat-icon stat-icon--completed">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="stat-body">
+              <span class="stat-label">Completed</span>
+              <span id="stat-completed-count" class="stat-value">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Controls Toolbar -->
+        <div class="assignments-toolbar">
+          <div class="toolbar-filters-group">
+            <select id="filter-status" class="assign-filter-select" aria-label="Filter by Status">
+              <option value="all">All Statuses</option>
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+
+            <select id="filter-priority" class="assign-filter-select" aria-label="Filter by Priority">
+              <option value="all">All Priorities</option>
+              <option value="Urgent">Urgent</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+
+            <select id="filter-subject" class="assign-filter-select" aria-label="Filter by Subject">
+              <option value="all">All Subjects</option>
+            </select>
+          </div>
+
+          <input id="assign-search-input" type="text" class="assign-search-input" placeholder="Search title or description..." autocomplete="off" />
+        </div>
+
+        <!-- Assignments List Container -->
+        <div id="assignments-list" class="assignments-list" role="list"></div>
+
+        <!-- Empty State -->
+        <div id="assignments-empty" class="assignments-empty" style="display: none;">
+          <div class="assignments-empty-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h3 class="assignments-empty-title">No Assignments Found</h3>
+          <p class="assignments-empty-desc">No tasks match your current filter criteria or search query. Create a new assignment to keep your scholar journey organized.</p>
+          <button id="btn-empty-create-assignment" class="btn btn--primary" type="button" style="padding: 0.75rem 1.6rem; font-size: 0.88rem;">
+            <span>+ Create Assignment</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal Dialog for Creating / Editing Assignment -->
+  <div id="assignment-modal-overlay" class="node-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="assignment-modal-title">
+    <div class="node-dialog" style="max-width: 540px; width: 92%;">
+      <h2 id="assignment-modal-title" class="node-dialog__title" style="text-align: left; margin-bottom: 1.2rem;">New Assignment</h2>
+      
+      <form id="assignment-form" onsubmit="return false;">
+        <div class="assign-form-grid">
+          <div class="assign-form-group assign-form-full">
+            <label class="assign-form-label" for="assign-input-title">Title *</label>
+            <input id="assign-input-title" class="assign-form-input" type="text" placeholder="e.g., Operating Systems Term Paper" maxlength="80" required autocomplete="off" />
+          </div>
+
+          <div class="assign-form-group">
+            <label class="assign-form-label" for="assign-input-subject">Subject / Topic</label>
+            <input id="assign-input-subject" class="assign-form-input" list="assignment-subject-datalist" type="text" placeholder="e.g., Computer Science" maxlength="40" autocomplete="off" />
+            <datalist id="assignment-subject-datalist"></datalist>
+          </div>
+
+          <div class="assign-form-group">
+            <label class="assign-form-label" for="assign-input-due-date">Due Date *</label>
+            <input id="assign-input-due-date" class="assign-form-input" type="date" required />
+          </div>
+
+          <div class="assign-form-group">
+            <label class="assign-form-label" for="assign-input-priority">Priority</label>
+            <select id="assign-input-priority" class="assign-form-select">
+              <option value="Medium">Medium</option>
+              <option value="Urgent">Urgent</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+
+          <div class="assign-form-group">
+            <label class="assign-form-label" for="assign-input-status">Status</label>
+            <select id="assign-input-status" class="assign-form-select">
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="assign-form-group assign-form-full">
+            <label class="assign-form-label" for="assign-input-desc">Description &amp; Milestones</label>
+            <textarea id="assign-input-desc" class="assign-form-textarea" placeholder="Add assignment details, rubric requirements, or research goals..." rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="node-dialog__actions" style="justify-content: flex-end; gap: 0.8rem;">
+          <button id="assign-modal-cancel-btn" class="btn btn--ghost" style="padding: 0.65rem 1.4rem; font-size: 0.82rem;" type="button">Cancel</button>
+          <button id="assign-modal-save-btn" class="btn btn--primary" style="padding: 0.65rem 1.5rem; font-size: 0.82rem;" type="button">Save Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Dialog for Viewing Assignment Details -->
+  <div id="assignment-detail-overlay" class="node-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="assign-detail-title">
+    <div class="node-dialog" style="max-width: 540px; width: 92%;">
+      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.8rem;">
+        <h2 id="assign-detail-title" class="node-dialog__title" style="text-align: left; margin: 0; font-size: 1.4rem;">Assignment Details</h2>
+        <button id="assign-detail-close-x" class="assign-action-btn" type="button" title="Close" style="margin-top: -4px;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="assign-detail-box">
+        <div id="assign-detail-badges" class="assign-detail-badges"></div>
+        <div id="assign-detail-desc" class="assign-detail-desc"></div>
+        <div id="assign-detail-meta" class="assign-detail-meta-list"></div>
+      </div>
+
+      <div class="node-dialog__actions" style="justify-content: space-between; flex-wrap: wrap; gap: 0.6rem;">
+        <button id="assign-detail-delete-btn" class="btn btn--ghost" style="padding: 0.65rem 1.2rem; font-size: 0.82rem; color: #c92a2a; border-color: rgba(201, 42, 42, 0.3);" type="button">Delete</button>
+        <div style="display: flex; gap: 0.6rem;">
+          <button id="assign-detail-toggle-btn" class="btn btn--ghost" style="padding: 0.65rem 1.2rem; font-size: 0.82rem;" type="button">Mark Completed</button>
+          <button id="assign-detail-edit-btn" class="btn btn--primary" style="padding: 0.65rem 1.4rem; font-size: 0.82rem;" type="button">Edit</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Modal Dialog for Editing / Adding Node -->
@@ -573,5 +802,6 @@
   <script src="js/workspace.js"></script>
   <script src="js/search.js"></script>
   <script src="js/dashboard.js"></script>
+  <script src="js/assignments.js"></script>
 </body>
 </html>

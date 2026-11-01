@@ -62,6 +62,16 @@ window.AdiverseDashboard = (function () {
     }
 
     render();
+
+    if (window.location.hash === '#dashboard') {
+      showView('dashboard');
+    }
+
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#dashboard') {
+        showView('dashboard');
+      }
+    });
   }
 
   function showView(viewName) {
@@ -77,6 +87,8 @@ window.AdiverseDashboard = (function () {
     if (sidebar) sidebar.classList.remove('is-open');
     if (backdrop) backdrop.classList.remove('is-open');
 
+    const assignmentsView = document.getElementById('assignments-workspace-view');
+
     if (viewName === 'dashboard') {
       if (notesView) {
         if (window.AdiverseNotes && typeof window.AdiverseNotes.saveCurrentNote === 'function') {
@@ -86,6 +98,7 @@ window.AdiverseDashboard = (function () {
         notesView.classList.remove('is-active');
       }
       if (stage) stage.style.display = 'none';
+      if (assignmentsView) assignmentsView.style.display = 'none';
       if (dashboardView) dashboardView.style.display = 'block';
 
       if (eyebrow) eyebrow.textContent = 'Cosmos Overview';
@@ -105,6 +118,7 @@ window.AdiverseDashboard = (function () {
         notesView.classList.remove('is-active');
       }
       if (dashboardView) dashboardView.style.display = 'none';
+      if (assignmentsView) assignmentsView.style.display = 'none';
       if (stage) stage.style.display = 'flex';
 
       if (eyebrow) eyebrow.textContent = 'Academic Workspace';
@@ -113,6 +127,10 @@ window.AdiverseDashboard = (function () {
       navItems.forEach(item => item.classList.remove('active'));
       const navTreeBtn = document.getElementById('nav-knowledge-tree');
       if (navTreeBtn) navTreeBtn.classList.add('active');
+    } else if (viewName === 'assignments') {
+      if (window.AdiverseAssignments && typeof window.AdiverseAssignments.show === 'function') {
+        window.AdiverseAssignments.show();
+      }
     }
   }
 
