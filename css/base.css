@@ -22,8 +22,14 @@ body {
   font-weight: var(--weight-regular);
   line-height: var(--leading-normal);
   color: var(--color-text);
-  background-color: var(--color-bg-primary);
-  background-image: var(--page-bg-gradient);
+  background-color: #FFFCA8;
+  background:
+    radial-gradient(
+      ellipse at 50% 25%,
+      #FFFFD6 0%,
+      #FFFCA8 48%,
+      #F5F18A 100%
+    );
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

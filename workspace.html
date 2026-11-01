@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Adiverse Academic Workspace - Interactive Knowledge Tree and Learning Cosmos." />
+  <meta name="theme-color" content="#FFFCA8" />
+
+  <title>Academic Workspace - Adiverse</title>
+
+  <!-- Favicon Suite -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png" />
+  <link rel="apple-touch-icon" href="assets/favicon-192x192.png" />
+
+  <!-- Google Fonts: DM Sans & Cormorant Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,900&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/workspace.css" />
+  <link rel="stylesheet" href="css/notes-editor.css" />
+</head>
+<body class="workspace-shell">
+
+  <!-- Background Technical Grid Overlay -->
+  <div class="workspace-grid" aria-hidden="true"></div>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="workspace-sidebar-backdrop"></div>
+
+  <!-- Left Sidebar -->
+  <aside id="workspace-sidebar" class="workspace-sidebar" aria-label="Academic Workspace Navigation">
+    <div class="workspace-sidebar__header">
+      <a href="index.html" class="workspace-sidebar__brand" title="Return to Adiverse Landing Page">
+        <img src="assets/tree-logo-nav.png" alt="Adiverse Emblem" class="workspace-sidebar__logo" width="34" height="34" />
+        <div>
+          <span class="workspace-sidebar__brand-name">ADIVERSE</span>
+          <span class="workspace-sidebar__badge">WORKSPACE</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="workspace-sidebar__content">
+      <!-- Core Navigation Items -->
+      <div>
+        <p class="workspace-sidebar__section-title">Navigation</p>
+        <nav class="workspace-nav-list" aria-label="Primary Workspace Sections">
+          <a href="index.html" class="workspace-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+          </a>
+
+          <button class="workspace-nav-item active" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span>My Knowledge</span>
+          </button>
+
+          <button class="workspace-nav-item" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+            <span>Explore</span>
+          </button>
+
+          <button class="workspace-nav-item" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span>Settings</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Scholar Profile Area -->
+    <div class="workspace-sidebar__footer">
+      <div class="scholar-profile">
+        <div class="scholar-avatar" aria-hidden="true">A</div>
+        <div>
+          <p class="scholar-name">Aadi Scholar</p>
+          <p class="scholar-role">Computer Science &bull; Year 2</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Viewport -->
+  <div class="workspace-content">
+
+    <!-- Top Bar -->
+    <header class="workspace-topbar" aria-label="Workspace Top Bar">
+      <div class="workspace-topbar__left">
+        <button id="sidebar-toggle" class="workspace-sidebar-toggle" aria-label="Toggle Navigation Sidebar">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="var(--color-dark)" stroke-width="2" fill="none">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="workspace-title-wrap">
+          <span class="workspace-eyebrow">Academic Workspace</span>
+          <h1 class="workspace-title">Knowledge Tree</h1>
+        </div>
+      </div>
+
+      <div class="workspace-topbar__right">
+        <span id="node-count-badge" class="node-count-badge">5 Concept Nodes</span>
+        <button id="add-concept-topbar" class="btn btn--primary" style="padding: 0.65rem 1.4rem; font-size: 0.8rem;" type="button">
+          <span>+ Add Child</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Interactive Canvas Stage -->
+    <main class="workspace-main" id="workspace-stage" aria-label="Interactive Knowledge Tree Canvas">
+      <svg id="tree-svg" class="tree-canvas-svg">
+        <g id="tree-viewport">
+          <g id="edges-layer"></g>
+          <g id="nodes-layer"></g>
+        </g>
+      </svg>
+
+      <!-- Floating Node Action Toolbar -->
+      <div id="node-toolbar" class="node-toolbar" role="toolbar" aria-label="Node Actions">
+        <button id="tool-open-notes" class="node-tool-btn" type="button" title="Open Topic Notes" style="background: var(--color-purple); color: #FFFFFF;">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          <span>Open</span>
+        </button>
+        <button id="tool-add-child" class="node-tool-btn" type="button" title="Add Child Concept">
+          <span>+ Child</span>
+        </button>
+        <button id="tool-edit-title" class="node-tool-btn" type="button" title="Edit Title">
+          <span>Edit</span>
+        </button>
+        <button id="tool-delete" class="node-tool-btn node-tool-btn--danger" type="button" title="Delete Concept">
+          <span>Delete</span>
+        </button>
+      </div>
+
+      <!-- Floating Zoom and Pan Controls -->
+      <div class="canvas-controls" aria-label="Canvas Zoom and Pan Controls">
+        <button id="zoom-in-btn" class="canvas-btn" title="Zoom In" aria-label="Zoom In" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+        <button id="zoom-out-btn" class="canvas-btn" title="Zoom Out" aria-label="Zoom Out" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+        <div class="canvas-divider" aria-hidden="true"></div>
+        <button id="recenter-btn" class="canvas-btn" title="Recenter Viewport" aria-label="Recenter Viewport" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+        </button>
+      </div>
+    </main>
+
+    <!-- Dedicated Topic Notes Workspace View -->
+    <section id="notes-workspace-view" class="notes-workspace-view" aria-label="Topic Notes Workspace">
+
+      <!-- Notes Sub-Header with Back Action -->
+      <div class="notes-topbar-nav">
+        <button id="btn-back-to-tree" class="notes-back-btn" type="button" title="Return to Knowledge Tree">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Knowledge Tree</span>
+        </button>
+
+        <div class="notes-topic-meta">
+          <span id="notes-topic-name" class="notes-topic-pill">Topic Notes</span>
+          <span id="notes-save-status" class="notes-save-status">Auto-saved</span>
+        </div>
+      </div>
+
+      <!-- Rich Text Formatting Toolbar -->
+      <div class="notes-toolbar" role="toolbar" aria-label="Rich Text Formatting">
+
+        <!-- Style / Hierarchy Group -->
+        <div class="toolbar-group">
+          <select id="tb-heading" class="tb-select" title="Paragraph Format">
+            <option value="p">Paragraph</option>
+            <option value="h1">Heading 1</option>
+            <option value="h2">Heading 2</option>
+            <option value="h3">Heading 3</option>
+            <option value="blockquote">Quote</option>
+            <option value="pre">Code Block</option>
+          </select>
+        </div>
+
+        <!-- Typography Family & Size -->
+        <div class="toolbar-group">
+          <select id="tb-font-family" class="tb-select" title="Font Family">
+            <option value="'DM Sans', sans-serif">DM Sans</option>
+            <option value="'Cormorant Garamond', Georgia, serif">Cormorant Garamond</option>
+            <option value="'Inter', system-ui, sans-serif">Inter</option>
+            <option value="'Georgia', serif">Georgia</option>
+            <option value="'Courier New', monospace">Monospace</option>
+          </select>
+
+          <select id="tb-font-size" class="tb-select" title="Font Size">
+            <option value="0.9rem">Small</option>
+            <option value="1rem" selected>Normal</option>
+            <option value="1.15rem">Medium</option>
+            <option value="1.35rem">Large</option>
+            <option value="1.6rem">Huge</option>
+          </select>
+        </div>
+
+        <!-- Inline Text Styles -->
+        <div class="toolbar-group">
+          <button class="tb-btn" data-command="bold" title="Bold (Ctrl+B)" type="button"><b>B</b></button>
+          <button class="tb-btn" data-command="italic" title="Italic (Ctrl+I)" type="button"><i>I</i></button>
+          <button class="tb-btn" data-command="underline" title="Underline (Ctrl+U)" type="button"><u>U</u></button>
+          <button class="tb-btn" data-command="strikeThrough" title="Strikethrough" type="button"><s>S</s></button>
+        </div>
+
+        <!-- Text & Highlight Color -->
+        <div class="toolbar-group">
+          <div class="tb-color-wrap" title="Text Color">
+            <span id="tb-text-color-indicator" class="tb-color-indicator" style="background-color: #171717;"></span>
+            <input id="tb-text-color" class="tb-color-input" type="color" value="#171717" />
+          </div>
+
+          <div class="tb-color-wrap" title="Highlight Color">
+            <span id="tb-highlight-indicator" class="tb-color-indicator" style="background-color: #FFFCA8;"></span>
+            <input id="tb-highlight-color" class="tb-color-input" type="color" value="#FFFCA8" />
+          </div>
+        </div>
+
+        <!-- Text Alignment -->
+        <div class="toolbar-group">
+          <button class="tb-btn" data-command="justifyLeft" title="Align Left" type="button">
+            <svg viewBox="0 0 24 24"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="15" y1="12" x2="3" y2="12"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>
+          </button>
+          <button class="tb-btn" data-command="justifyCenter" title="Align Center" type="button">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="6"></line><line x1="21" y1="12" x2="3" y2="12"></line><line x1="18" y1="18" x2="6" y2="18"></line></svg>
+          </button>
+          <button class="tb-btn" data-command="justifyRight" title="Align Right" type="button">
+            <svg viewBox="0 0 24 24"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="12" x2="9" y2="12"></line><line x1="21" y1="18" x2="7" y2="18"></line></svg>
+          </button>
+          <button class="tb-btn" data-command="justifyFull" title="Justify" type="button">
+            <svg viewBox="0 0 24 24"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="12" x2="3" y2="12"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <!-- Lists -->
+        <div class="toolbar-group">
+          <button class="tb-btn" data-command="insertUnorderedList" title="Bullet List" type="button">
+            <svg viewBox="0 0 24 24"><line x1="9" y1="6" x2="20" y2="6"></line><line x1="9" y1="12" x2="20" y2="12"></line><line x1="9" y1="18" x2="20" y2="18"></line><circle cx="4" cy="6" r="2" fill="currentColor"></circle><circle cx="4" cy="12" r="2" fill="currentColor"></circle><circle cx="4" cy="18" r="2" fill="currentColor"></circle></svg>
+          </button>
+          <button class="tb-btn" data-command="insertOrderedList" title="Numbered List" type="button">
+            <svg viewBox="0 0 24 24"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><path d="M4 6h2v4"></path><path d="M4 10h4"></path></svg>
+          </button>
+        </div>
+
+        <!-- Media & Insert -->
+        <div class="toolbar-group">
+          <button id="tb-btn-image" class="tb-btn" title="Insert Image from Device" type="button">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          </button>
+          <input id="tb-image-upload-input" type="file" accept="image/*" style="display:none;" />
+
+          <button id="tb-btn-link" class="tb-btn" title="Insert Link" type="button">
+            <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </button>
+
+          <button id="tb-btn-clear" class="tb-btn" title="Clear Formatting" type="button">
+            <span style="font-size:0.75rem;">T&#824;</span>
+          </button>
+
+          <button id="tb-btn-undo" class="tb-btn" title="Undo (Ctrl+Z)" type="button">
+            <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          </button>
+          <button id="tb-btn-redo" class="tb-btn" title="Redo (Ctrl+Y)" type="button">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+          </button>
+        </div>
+
+        <!-- Topic Note Background Themes -->
+        <div class="toolbar-group">
+          <span style="font-size:0.72rem; text-transform:uppercase; font-weight:bold; color:var(--color-text-subtle); margin-right:4px;">Paper:</span>
+          <div class="theme-picker-group">
+            <div class="theme-swatch active" data-bg-color="#FFFFFF" title="Clean White Paper" style="background-color: #FFFFFF;"></div>
+            <div class="theme-swatch" data-bg-color="#FFFCA8" title="Pastel Lemon" style="background-color: #FFFCA8;"></div>
+            <div class="theme-swatch" data-bg-color="#FFFFD6" title="Pale Yellow" style="background-color: #FFFFD6;"></div>
+            <div class="theme-swatch" data-bg-color="#F2F7F2" title="Soft Sage" style="background-color: #F2F7F2;"></div>
+            <div class="theme-swatch" data-bg-color="#171717" title="Dark Scholar" style="background-color: #171717;"></div>
+            <div class="tb-color-wrap" title="Custom Page Color">
+              <span class="tb-color-indicator" style="background: linear-gradient(135deg, #FFFCA8, #A66BEF); border-radius: 50%;"></span>
+              <input id="tb-bg-color-input" class="tb-color-input" type="color" value="#FFFFFF" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Notes Document Canvas -->
+      <div class="notes-document-canvas">
+        <article id="notes-document-card" class="notes-document-card">
+          <header class="notes-document-header">
+            <h1 id="notes-doc-title" class="notes-document-title">Topic Notes</h1>
+            <p class="notes-document-subtitle">Personal Study Cosmos &bull; Independent Topic Space</p>
+          </header>
+
+          <div
+            id="notes-editor-body"
+            class="notes-editor-body"
+            contenteditable="true"
+            spellcheck="true"
+            role="textbox"
+            aria-multiline="true"
+            aria-label="Topic Notes Editor"
+          ></div>
+        </article>
+
+        <!-- Floating Image Resizing / Alignment Bar -->
+        <div id="image-action-bar" class="image-action-bar" role="toolbar" aria-label="Image Controls">
+          <span style="font-size:0.7rem; color:var(--color-pastel-yellow); padding-inline:4px;">Width:</span>
+          <button class="img-btn" data-img-width="35%" type="button">35%</button>
+          <button class="img-btn" data-img-width="60%" type="button">60%</button>
+          <button class="img-btn" data-img-width="100%" type="button">100%</button>
+          <span style="width:1px; height:12px; background:rgba(255,255,255,0.2); margin-inline:2px;"></span>
+          <button class="img-btn" data-img-align="left" type="button" title="Align Left">Left</button>
+          <button class="img-btn" data-img-align="center" type="button" title="Align Center">Center</button>
+          <button class="img-btn" data-img-align="right" type="button" title="Align Right">Right</button>
+          <span style="width:1px; height:12px; background:rgba(255,255,255,0.2); margin-inline:2px;"></span>
+          <button id="img-btn-delete" class="img-btn img-btn--danger" type="button" title="Remove Image">Delete</button>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Modal Dialog for Editing / Adding Node -->
+  <div id="node-dialog-overlay" class="node-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+    <div class="node-dialog">
+      <h2 id="dialog-title" class="node-dialog__title">Edit Concept Title</h2>
+      <input id="dialog-input" class="node-dialog__input" type="text" maxlength="40" autocomplete="off" />
+      <div class="node-dialog__actions">
+        <button id="dialog-cancel-btn" class="btn btn--ghost" style="padding: 0.65rem 1.4rem; font-size: 0.8rem;" type="button">Cancel</button>
+        <button id="dialog-save-btn" class="btn btn--primary" style="padding: 0.65rem 1.4rem; font-size: 0.8rem;" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/notes-editor.js"></script>
+  <script src="js/workspace.js"></script>
+</body>
+</html>

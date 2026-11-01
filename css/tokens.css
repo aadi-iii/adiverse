@@ -1,7 +1,7 @@
 /* ============================================================
    ADIVERSE  -  DESIGN TOKENS
    Refined Brand Identity & Studio Lighting:
-   - Studio Yellow Gradient (#FFF96B center -> #FFF21A main -> #F3D91A warm perimeter)
+   - Soft Pastel Lemon-Yellow Gradient (#FFFFD6 -> #FFFCA8 -> #F5F18A)
    - Heavy Bold Typography (#171717)
    - Glossy Liquid Purple Tree Accent (#A66BEF)
    - Custom Pill Button Architecture
@@ -10,10 +10,10 @@
 
 :root {
 
-  /* --- Official Adiverse Brand Colors: Soft Pastel Yellow Foundation --- */
-  --color-pastel-yellow: #F8F3A6;  /* Main pastel yellow */
-  --color-light-yellow:  #FFFBE0;  /* Soft light illuminated yellow */
-  --color-warm-yellow:   #F5EFA0;  /* Warm golden pastel tone */
+  /* --- Official Adiverse Brand Colors: Soft Pastel Lemon-Yellow Foundation --- */
+  --color-pastel-yellow: #FFFCA8;  /* Main pastel yellow */
+  --color-light-yellow:  #FFFFD6;  /* Very light pale yellow */
+  --color-warm-yellow:   #F5F18A;  /* Slightly deeper soft yellow */
   --color-bg-primary:    var(--color-pastel-yellow);
   --color-bg-secondary:  var(--color-light-yellow);
   --color-bg-warm:       var(--color-warm-yellow);
@@ -22,17 +22,13 @@
   --color-bg-deep:       var(--color-warm-yellow);
   --color-bg-alt:        transparent; /* Seamless section transitions */
   
-  /* Seamless Page-Level Pastel Yellow Gradient System */
+  /* Seamless Page-Level Pastel Lemon-Yellow Gradient System */
   --page-bg-gradient:
     radial-gradient(
-      ellipse at 50% 20%,
-      var(--color-light-yellow) 0%,
-      transparent 70%
-    ),
-    linear-gradient(
-      135deg,
-      var(--color-pastel-yellow) 0%,
-      var(--color-warm-yellow) 100%
+      ellipse at 50% 25%,
+      #FFFFD6 0%,
+      #FFFCA8 48%,
+      #F5F18A 100%
     );
 
   --hero-bg-gradient: var(--page-bg-gradient);
@@ -135,26 +131,26 @@
   --glass-panel-shadow:    0 12px 36px rgba(23, 23, 23, 0.06),
                            inset 0 1px 0 rgba(255, 255, 255, 0.58);
 
-  --glass-legend-bg:       rgba(255, 251, 224, 0.40);
+  --glass-legend-bg:       rgba(255, 255, 214, 0.45);
   --glass-legend-blur:     blur(18px) saturate(140%);
   --glass-legend-border:   1px solid rgba(255, 255, 255, 0.65);
   --glass-legend-shadow:   0 4px 16px rgba(23, 23, 23, 0.04),
                            inset 0 1px 0 rgba(255, 255, 255, 0.65);
 
-  --glass-label-bg:        rgba(255, 251, 224, 0.40);
+  --glass-label-bg:        rgba(255, 255, 214, 0.45);
   --glass-label-blur:      blur(20px) saturate(140%);
   --glass-label-border:    1px solid rgba(255, 255, 255, 0.65);
   --glass-label-shadow:    0 6px 20px rgba(23, 23, 23, 0.05),
                            inset 0 1px 0 rgba(255, 255, 255, 0.65);
 
   /* Scroll-Aware Translucent Glass Navbar */
-  --glass-nav-bg:          rgba(255, 251, 224, 0.42);
+  --glass-nav-bg:          rgba(255, 255, 214, 0.42);
   --glass-nav-blur:        blur(24px) saturate(145%);
   --glass-nav-border:      rgba(255, 255, 255, 0.35);
   --glass-nav-shadow:      0 6px 24px rgba(23, 23, 23, 0.035),
                            inset 0 1px 0 rgba(255, 255, 255, 0.40);
 
-  --glass-nav-scroll-bg:   rgba(255, 251, 224, 0.30);
+  --glass-nav-scroll-bg:   rgba(255, 255, 214, 0.32);
   --glass-nav-scroll-blur: blur(28px) saturate(150%);
   --glass-nav-scroll-border: rgba(255, 255, 255, 0.28);
   --glass-nav-scroll-shadow: 0 8px 28px rgba(23, 23, 23, 0.055);

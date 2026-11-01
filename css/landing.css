@@ -1,7 +1,7 @@
 /* ============================================================
    ADIVERSE  -  LANDING PAGE STYLES
    Official Brand Identity:
-   - Studio Yellow Gradient (#FFF96B -> #FFF21A -> #F3D91A)
+   - Soft Pastel Lemon-Yellow Gradient (#FFFFD6 -> #FFFCA8 -> #F5F18A)
    - Official 3D Glossy Purple Liquid Tree Emblem (Hero, Navbar, Favicon)
    - Custom Pill CTA Architecture with Micro-motion
    - Premium Glass Navbar with Tree Brand Alignment
@@ -69,7 +69,7 @@
 
 @supports not (backdrop-filter: blur(1px)) {
   .nav {
-    background-color: rgba(248, 243, 166, 0.92);
+    background-color: rgba(255, 252, 168, 0.94);
   }
 }
 
@@ -190,6 +190,7 @@
 
 .nav__hamburger span {
   display: block;
+  width: 22px;
   height: 2px;
   background-color: var(--color-dark);
   border-radius: 2px;
@@ -215,7 +216,7 @@
   top: var(--nav-height);
   left: 0;
   right: 0;
-  background-color: rgba(255, 251, 224, 0.88);
+  background-color: rgba(255, 255, 214, 0.92);
   backdrop-filter: var(--glass-nav-blur);
   -webkit-backdrop-filter: var(--glass-nav-blur);
   border-bottom: 1px solid rgba(23, 23, 23, 0.12);
@@ -1009,7 +1010,7 @@
   width: 420px;
   height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 242, 26, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 252, 168, 0.15) 0%, transparent 70%);
   pointer-events: none;
 }
 
