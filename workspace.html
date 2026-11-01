@@ -415,6 +415,18 @@
     </div>
   </div>
 
+  <!-- Modal Dialog for Delete Confirmation -->
+  <div id="delete-confirm-overlay" class="node-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="delete-dialog-title">
+    <div class="node-dialog">
+      <h2 id="delete-dialog-title" class="node-dialog__title" style="color: #c92a2a;">Delete Topic &amp; Subtopics?</h2>
+      <p id="delete-dialog-message" style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1.25rem; line-height: 1.5; text-align: center;"></p>
+      <div class="node-dialog__actions">
+        <button id="delete-cancel-btn" class="btn btn--ghost" style="padding: 0.65rem 1.4rem; font-size: 0.8rem;" type="button">Cancel</button>
+        <button id="delete-confirm-btn" class="btn btn--primary" style="padding: 0.65rem 1.4rem; font-size: 0.8rem; background: #c92a2a; border-color: #c92a2a; color: #FFFFFF;" type="button">Delete Topic</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/notes-editor.js"></script>
   <script src="js/workspace.js"></script>
   <script src="js/search.js"></script>

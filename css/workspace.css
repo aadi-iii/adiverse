@@ -327,6 +327,39 @@
   filter: drop-shadow(0 0 12px rgba(166, 107, 239, 0.55));
 }
 
+.tree-node-group.is-dragging {
+  cursor: grabbing !important;
+  opacity: 0.92;
+  filter: drop-shadow(0 14px 28px rgba(23, 23, 23, 0.22));
+}
+
+.tree-node-group.drop-target .tree-node-shape {
+  stroke: var(--color-purple) !important;
+  stroke-width: 3.5px !important;
+  stroke-dasharray: 6 4;
+  fill: rgba(255, 252, 168, 0.95) !important;
+  filter: drop-shadow(0 0 16px rgba(166, 107, 239, 0.7)) !important;
+  animation: dropTargetPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes dropTargetPulse {
+  0%, 100% {
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 12px rgba(166, 107, 239, 0.6));
+  }
+  50% {
+    stroke-width: 4.5px;
+    filter: drop-shadow(0 0 20px rgba(166, 107, 239, 0.9));
+  }
+}
+
+.tree-node-group.drop-invalid .tree-node-shape {
+  stroke: #c92a2a !important;
+  stroke-width: 2.5px !important;
+  opacity: 0.55;
+  filter: drop-shadow(0 0 8px rgba(201, 42, 42, 0.4)) !important;
+}
+
 .tree-node-shape {
   transition: all 200ms ease;
 }
