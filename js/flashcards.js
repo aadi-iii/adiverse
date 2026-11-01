@@ -360,6 +360,8 @@ window.AdiverseFlashcards = (function () {
     if (resourcesView) resourcesView.style.display = 'none';
     const progressView = document.getElementById('progress-workspace-view');
     if (progressView) progressView.style.display = 'none';
+    const plannerView = document.getElementById('planner-workspace-view');
+    if (plannerView) plannerView.style.display = 'none';
 
     if (revisionView) {
       revisionView.style.display = 'flex';

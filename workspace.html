@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/assignments.css" />
   <link rel="stylesheet" href="css/flashcards.css" />
   <link rel="stylesheet" href="css/resources-progress.css" />
+  <link rel="stylesheet" href="css/planner-connections.css" />
 </head>
 <body class="workspace-shell">
 
@@ -78,6 +79,16 @@
               <rect x="3" y="16" width="7" height="5"></rect>
             </svg>
             <span>Dashboard</span>
+          </button>
+
+          <button id="nav-planner" class="workspace-nav-item" type="button" title="Study Planner &amp; Calendar">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Planner</span>
           </button>
 
           <button id="nav-assignments" class="workspace-nav-item" type="button" title="Assignments &amp; Deadlines">
@@ -214,7 +225,40 @@
         </div>
       </div>
 
-      <div class="workspace-topbar__right">
+      <div class="workspace-topbar__right" style="position: relative;">
+        <!-- In-App Notifications Bell Button & Panel -->
+        <button id="topbar-notifications-btn" class="notifications-bell-btn" type="button" aria-label="Notifications" title="Study Notifications &amp; Reminders">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span id="notifications-badge" class="notifications-unread-badge" style="display: none;">0</span>
+        </button>
+
+        <!-- Notifications Dropdown Panel -->
+        <div id="notifications-panel" class="notifications-panel" style="display: none;" role="region" aria-label="Notifications Panel">
+          <div class="notif-panel-header">
+            <h3 class="notif-panel-title">Notifications</h3>
+            <div style="display: flex; align-items: center; gap: 0.4rem;">
+              <button id="btn-mark-all-read" class="assign-action-btn" type="button" title="Mark All as Read" style="font-size: 0.72rem; padding: 2px 6px; width: auto; height: auto;">Mark Read</button>
+              <button id="btn-notif-settings" class="assign-action-btn" type="button" title="Reminder Settings">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div id="notifications-list" class="notif-panel-list"></div>
+          <div id="notifications-empty" class="dashboard-empty-mini" style="display: none; padding: 1.5rem; text-align: center;">
+            <p style="margin: 0; font-size: 0.8rem; color: var(--color-text-subtle);">All caught up! No active deadlines or sessions right now.</p>
+          </div>
+          <div class="notif-panel-footer">
+            <span id="notif-status-summary" style="font-size: 0.72rem; color: var(--color-text-subtle);">Auto-synced</span>
+            <button id="btn-close-notif-panel" class="assign-action-btn" type="button" title="Close" style="font-size: 0.75rem; width: auto; height: auto; padding: 2px 8px;">Close</button>
+          </div>
+        </div>
+
         <span id="node-count-badge" class="node-count-badge">5 Concept Nodes</span>
         <button id="add-concept-topbar" class="btn btn--primary" style="padding: 0.65rem 1.4rem; font-size: 0.8rem;" type="button">
           <span>+ Add Child</span>
@@ -226,6 +270,7 @@
     <main class="workspace-main" id="workspace-stage" aria-label="Interactive Knowledge Tree Canvas">
       <svg id="tree-svg" class="tree-canvas-svg">
         <g id="tree-viewport">
+          <g id="cross-edges-layer"></g>
           <g id="edges-layer"></g>
           <g id="nodes-layer"></g>
         </g>
@@ -236,6 +281,10 @@
         <button id="tool-open-notes" class="node-tool-btn" type="button" title="Open Topic Notes" style="background: var(--color-purple); color: #FFFFFF;">
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:2px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
           <span>Open</span>
+        </button>
+        <button id="tool-connect-topic" class="node-tool-btn" type="button" title="Connect to Another Topic">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:2px;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          <span>Connect</span>
         </button>
         <button id="tool-add-child" class="node-tool-btn" type="button" title="Add Child Concept">
           <span>+ Child</span>
@@ -474,6 +523,40 @@
           </div>
         </div>
 
+        <!-- Dashboard Quick Actions Bar -->
+        <div class="dashboard-quick-actions-bar">
+          <button id="dash-quick-topic" class="dash-quick-btn dash-quick-btn--primary" type="button" title="Add a new topic concept to your knowledge tree">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>+ Topic</span>
+          </button>
+          <button id="dash-quick-note" class="dash-quick-btn" type="button" title="Open or create notes for a topic">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <span>+ Note</span>
+          </button>
+          <button id="dash-quick-assignment" class="dash-quick-btn" type="button" title="Track a new assignment or coursework deadline">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>+ Assignment</span>
+          </button>
+          <button id="dash-quick-session" class="dash-quick-btn" type="button" title="Schedule a focused study session in your planner">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>+ Study Session</span>
+          </button>
+        </div>
+
         <!-- Metric Stat Cards -->
         <div class="dashboard-metrics-grid">
           <div class="dashboard-metric-card">
@@ -510,14 +593,31 @@
           <div class="dashboard-metric-card">
             <div class="metric-icon metric-icon--dark">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+                <path d="m9 16 2 2 4-4"></path>
               </svg>
             </div>
             <div class="metric-info">
-              <span class="metric-label">Learning Activity</span>
-              <span id="metric-activity-status" class="metric-value">Active</span>
-              <span class="metric-meta">Synchronized locally</span>
+              <span class="metric-label">Assignments</span>
+              <span id="metric-total-assignments" class="metric-value">0</span>
+              <span class="metric-meta">Active Tasks &amp; Milestones</span>
+            </div>
+          </div>
+
+          <div class="dashboard-metric-card">
+            <div class="metric-icon metric-icon--completed" style="background: rgba(43, 138, 62, 0.12); color: #2b8a3e;">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Completed Topics</span>
+              <span id="metric-completed-topics" class="metric-value">0</span>
+              <span class="metric-meta">Mastered Concepts</span>
             </div>
           </div>
         </div>
@@ -568,6 +668,52 @@
             </div>
           </div>
 
+          <!-- Upcoming Deadlines Section -->
+          <div class="dashboard-section-card">
+            <div class="section-card-header">
+              <div class="section-title-wrap">
+                <span class="section-icon-pill" style="background: rgba(217, 72, 15, 0.12); color: #d9480f;">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </span>
+                <h3 class="section-card-title">Upcoming Deadlines</h3>
+              </div>
+              <span class="section-tag">Coursework</span>
+            </div>
+
+            <div id="dash-deadlines-list" class="dashboard-items-list"></div>
+
+            <div id="dash-deadlines-empty" class="dashboard-empty-mini" style="display: none;">
+              <p>No upcoming assignment deadlines found. Stay ahead by scheduling new milestones.</p>
+            </div>
+          </div>
+
+          <!-- Planned Study Sessions Section -->
+          <div class="dashboard-section-card">
+            <div class="section-card-header">
+              <div class="section-title-wrap">
+                <span class="section-icon-pill" style="background: rgba(166, 107, 239, 0.15); color: var(--color-purple);">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </span>
+                <h3 class="section-card-title">Planned Sessions</h3>
+              </div>
+              <span class="section-tag">Focus Time</span>
+            </div>
+
+            <div id="dash-sessions-list" class="dashboard-items-list"></div>
+
+            <div id="dash-sessions-empty" class="dashboard-empty-mini" style="display: none;">
+              <p>No study sessions scheduled. Reserve focused study blocks in your Planner.</p>
+            </div>
+          </div>
+
         </div>
 
         <!-- Global Empty State if user has zero topics -->
@@ -584,6 +730,106 @@
           <button id="btn-empty-start-tree" class="btn btn--primary" type="button" style="padding: 0.75rem 1.6rem; font-size: 0.88rem;">
             <span>Plant Your First Topic</span>
           </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Dedicated Study Planner & Calendar Workspace View -->
+    <section id="planner-workspace-view" class="planner-workspace-view" style="display: none;" aria-label="Study Planner and Academic Calendar">
+      <div class="planner-container">
+        
+        <!-- Planner Header -->
+        <div class="assignments-header">
+          <div class="assignments-header-text">
+            <span class="assignments-eyebrow">Academic Schedule Cosmos</span>
+            <h1 class="assignments-heading">Study Planner &amp; Calendar</h1>
+            <p class="assignments-subheading">Organize your study sessions, track upcoming milestones, and synchronize academic deadlines.</p>
+          </div>
+          <button id="btn-create-session" class="btn btn--primary" type="button" style="padding: 0.75rem 1.6rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>+ Study Session</span>
+          </button>
+        </div>
+
+        <!-- Interactive Calendar Card -->
+        <div class="planner-calendar-card">
+          <!-- Calendar Top Controls -->
+          <div class="calendar-top-bar">
+            <div class="calendar-nav-group">
+              <button id="cal-prev-btn" class="assign-action-btn" type="button" title="Previous Period">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <h2 id="calendar-title-display" class="calendar-title-display">Calendar</h2>
+              <button id="cal-next-btn" class="assign-action-btn" type="button" title="Next Period">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+              <button id="cal-today-btn" class="btn btn--ghost" type="button" style="padding: 0.35rem 0.9rem; font-size: 0.78rem;">Today</button>
+            </div>
+
+            <!-- View Tabs: Month, Week, Day -->
+            <div class="calendar-view-tabs" role="tablist">
+              <button id="tab-cal-month" class="cal-tab-btn is-active" type="button" role="tab" aria-selected="true">Month</button>
+              <button id="tab-cal-week" class="cal-tab-btn" type="button" role="tab" aria-selected="false">Week</button>
+              <button id="tab-cal-day" class="cal-tab-btn" type="button" role="tab" aria-selected="false">Day</button>
+            </div>
+          </div>
+
+          <!-- Month View -->
+          <div id="planner-month-view">
+            <div class="calendar-month-grid" id="cal-month-headers">
+              <div class="cal-day-header">Sun</div>
+              <div class="cal-day-header">Mon</div>
+              <div class="cal-day-header">Tue</div>
+              <div class="cal-day-header">Wed</div>
+              <div class="cal-day-header">Thu</div>
+              <div class="cal-day-header">Fri</div>
+              <div class="cal-day-header">Sat</div>
+            </div>
+            <div class="calendar-month-grid" id="cal-month-days" style="margin-top: 6px;"></div>
+          </div>
+
+          <!-- Week View -->
+          <div id="planner-week-view" style="display: none;">
+            <div class="calendar-week-grid" id="cal-week-grid"></div>
+          </div>
+
+          <!-- Day View -->
+          <div id="planner-day-view" style="display: none;">
+            <div class="calendar-day-timeline" id="cal-day-timeline"></div>
+          </div>
+        </div>
+
+        <!-- Planner Bottom Grid: Upcoming Sessions & Deadlines -->
+        <div class="planner-bottom-grid">
+          <div class="planner-list-card">
+            <div class="planner-list-header">
+              <h3 class="planner-list-title">Upcoming Study Sessions</h3>
+              <span id="planner-sessions-count" class="section-tag">0 Sessions</span>
+            </div>
+            <div id="planner-sessions-list" class="dashboard-items-list"></div>
+            <div id="planner-sessions-empty" class="dashboard-empty-mini" style="display: none;">
+              <p>No study sessions scheduled. Click "+ Study Session" to reserve focused learning time.</p>
+            </div>
+          </div>
+
+          <div class="planner-list-card">
+            <div class="planner-list-header">
+              <h3 class="planner-list-title">Upcoming Assignment Deadlines</h3>
+              <span id="planner-deadlines-count" class="section-tag">0 Deadlines</span>
+            </div>
+            <div id="planner-deadlines-list" class="dashboard-items-list"></div>
+            <div id="planner-deadlines-empty" class="dashboard-empty-mini" style="display: none;">
+              <p>No upcoming assignments with due dates found. Add an assignment to see it here.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1416,6 +1662,185 @@
     </div>
   </div>
 
+  <!-- Modal Dialog for Creating Cross-Topic Connection -->
+  <div id="cross-connect-dialog-overlay" class="node-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="cross-connect-modal-title">
+    <div class="node-dialog" style="max-width: 480px; width: 92%;">
+      <h2 id="cross-connect-modal-title" class="node-dialog__title" style="text-align: left; margin-bottom: 1rem;">Connect Concepts Across Tree</h2>
+      <p style="font-size: 0.84rem; color: var(--color-text-subtle); margin-bottom: 1.2rem; text-align: left; line-height: 1.45;">
+        Link <strong id="cross-connect-source-name" style="color: var(--color-dark);"></strong> with any other concept across branches to reveal interdisciplinary connections.
+      </p>
+
+      <div class="assign-form-group assign-form-full" style="text-align: left; margin-bottom: 1.4rem;">
+        <label class="assign-form-label" for="cross-connect-target-select">Select Target Topic *</label>
+        <select id="cross-connect-target-select" class="assign-form-select" style="width: 100%;">
+          <option value="">-- Choose a topic to connect --</option>
+        </select>
+        <span id="cross-connect-hint" style="font-size: 0.74rem; color: var(--color-text-subtle); display: block; margin-top: 4px;">
+          Topics already connected or the current topic are excluded.
+        </span>
+      </div>
+
+      <div class="node-dialog__actions" style="justify-content: flex-end; gap: 0.8rem;">
+        <button id="cross-connect-cancel-btn" class="btn btn--ghost" style="padding: 0.65rem 1.4rem; font-size: 0.82rem;" type="button">Cancel</button>
+        <button id="cross-connect-save-btn" class="btn btn--primary" style="padding: 0.65rem 1.5rem; font-size: 0.82rem;" type="button">Create Connection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Dialog for Viewing / Removing Cross-Topic Connection -->
+  <div id="connection-details-overlay" class="node-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="conn-details-modal-title">
+    <div class="node-dialog" style="max-width: 460px; width: 92%;">
+      <div class="connection-detail-card">
+        <h2 id="conn-details-modal-title" class="node-dialog__title" style="text-align: left; margin: 0;">Cross-Topic Connection</h2>
+        
+        <div class="conn-topics-row">
+          <span id="conn-detail-from" class="conn-topic-badge">Topic A</span>
+          <span class="conn-icon-arrow">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17l9.2-9.2M17 17V8H8"></path>
+            </svg>
+          </span>
+          <span id="conn-detail-to" class="conn-topic-badge">Topic B</span>
+        </div>
+
+        <p style="font-size: 0.82rem; color: var(--color-text-subtle); margin: 0; line-height: 1.45;">
+          This link represents a conceptual bridge between distinct knowledge branches. Navigate directly to either concept or remove the bridge.
+        </p>
+
+        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+          <button id="conn-nav-from-btn" class="btn btn--ghost" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.6rem 0.8rem;" type="button">
+            Go to Source
+          </button>
+          <button id="conn-nav-to-btn" class="btn btn--ghost" style="flex: 1; min-width: 130px; font-size: 0.8rem; padding: 0.6rem 0.8rem;" type="button">
+            Go to Target
+          </button>
+        </div>
+
+        <div class="node-dialog__actions" style="justify-content: space-between; border-top: 1px solid rgba(23, 23, 23, 0.08); padding-top: 1rem; margin-top: 0.4rem;">
+          <button id="conn-delete-btn" class="btn btn--ghost" style="color: #c92a2a; border-color: rgba(201, 42, 42, 0.2); padding: 0.6rem 1.2rem; font-size: 0.8rem;" type="button">
+            Remove Connection
+          </button>
+          <button id="conn-close-btn" class="btn btn--primary" style="padding: 0.6rem 1.3rem; font-size: 0.8rem;" type="button">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Dialog for Creating / Editing Study Session -->
+  <div id="study-session-modal-overlay" class="node-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="session-modal-title">
+    <div class="node-dialog" style="max-width: 540px; width: 92%;">
+      <h2 id="session-modal-title" class="node-dialog__title" style="text-align: left; margin-bottom: 1.2rem;">Plan Study Session</h2>
+      
+      <form id="study-session-form" onsubmit="return false;">
+        <div class="assign-form-grid">
+          <div class="assign-form-group assign-form-full">
+            <label class="assign-form-label" for="sess-input-title">Session Goal / Title *</label>
+            <input id="sess-input-title" class="assign-form-input" type="text" placeholder="e.g., Deep dive into Graph Algorithms &amp; Dijkstra" maxlength="90" required autocomplete="off" />
+          </div>
+
+          <div class="assign-form-group">
+            <label class="assign-form-label" for="sess-input-topic">Subject or Topic</label>
+            <input id="sess-input-topic" class="assign-form-input" list="session-topic-datalist" type="text" placeholder="e.g., Algorithms" maxlength="50" autocomplete="off" />
+            <datalist id="session-topic-datalist"></datalist>
+          </div>
+
+          <div class="assign-form-group">
+            <label class="assign-form-label" for="sess-input-date">Date *</label>
+            <input id="sess-input-date" class="assign-form-input" type="date" required />
+          </div>
+
+          <div class="assign-form-group">
+            <label class="assign-form-label" for="sess-input-time">Start Time *</label>
+            <input id="sess-input-time" class="assign-form-input" type="time" value="10:00" required />
+          </div>
+
+          <div class="assign-form-group">
+            <label class="assign-form-label" for="sess-input-duration">Duration</label>
+            <select id="sess-input-duration" class="assign-form-select">
+              <option value="25">25 min (Pomodoro)</option>
+              <option value="45">45 min</option>
+              <option value="60" selected>60 min (1 Hour)</option>
+              <option value="90">90 min (Deep Work)</option>
+              <option value="120">120 min (2 Hours)</option>
+            </select>
+          </div>
+
+          <div class="assign-form-group assign-form-full">
+            <label class="assign-form-label" for="sess-input-link">Link to Existing Item (optional)</label>
+            <select id="sess-input-link" class="assign-form-select">
+              <option value="">None (Independent Study)</option>
+            </select>
+          </div>
+
+          <div class="assign-form-group assign-form-full">
+            <label class="assign-form-label" for="sess-input-notes">Notes / Focus Objectives</label>
+            <textarea id="sess-input-notes" class="assign-form-textarea" placeholder="List questions to resolve or proofs to write during this block..." rows="3"></textarea>
+          </div>
+
+          <div class="assign-form-group assign-form-full" style="display: flex; align-items: center; gap: 0.6rem;">
+            <input id="sess-input-completed" type="checkbox" style="width: 18px; height: 18px; accent-color: var(--color-purple); cursor: pointer;" />
+            <label for="sess-input-completed" class="assign-form-label" style="margin: 0; cursor: pointer;">Mark study session as completed</label>
+          </div>
+        </div>
+
+        <div class="node-dialog__actions" style="justify-content: flex-end; gap: 0.8rem; margin-top: 1.2rem;">
+          <button id="sess-modal-cancel-btn" class="btn btn--ghost" style="padding: 0.65rem 1.4rem; font-size: 0.82rem;" type="button">Cancel</button>
+          <button id="sess-modal-save-btn" class="btn btn--primary" style="padding: 0.65rem 1.5rem; font-size: 0.82rem;" type="button">Save Session</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Dialog for Notification & Reminder Settings -->
+  <div id="notifications-settings-modal-overlay" class="node-dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="notif-settings-modal-title">
+    <div class="node-dialog" style="max-width: 480px; width: 92%;">
+      <h2 id="notif-settings-modal-title" class="node-dialog__title" style="text-align: left; margin-bottom: 0.6rem;">Reminder Settings</h2>
+      <p style="font-size: 0.82rem; color: var(--color-text-subtle); margin-bottom: 1.2rem; text-align: left; line-height: 1.45;">
+        Configure in-app reminder thresholds and optional browser alert permissions.
+      </p>
+
+      <form id="notif-settings-form" onsubmit="return false;" style="text-align: left;">
+        <div class="assign-form-group assign-form-full" style="margin-bottom: 1rem;">
+          <label class="assign-form-label" for="notif-lead-time-select">Deadline Reminder Notice</label>
+          <select id="notif-lead-time-select" class="assign-form-select">
+            <option value="1">1 hour before deadline</option>
+            <option value="6">6 hours before deadline</option>
+            <option value="24" selected>24 hours (1 day) before deadline</option>
+            <option value="48">48 hours (2 days) before deadline</option>
+          </select>
+        </div>
+
+        <div class="assign-form-group assign-form-full" style="margin-bottom: 1.2rem;">
+          <label class="assign-form-label" for="notif-session-lead-select">Study Session Notice</label>
+          <select id="notif-session-lead-select" class="assign-form-select">
+            <option value="15">15 minutes before session</option>
+            <option value="30" selected>30 minutes before session</option>
+            <option value="60">1 hour before session</option>
+          </select>
+        </div>
+
+        <div style="background: rgba(23, 23, 23, 0.04); border-radius: 12px; padding: 1rem; margin-bottom: 1.2rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;">
+            <div>
+              <strong style="font-size: 0.84rem; color: var(--color-dark); display: block;">Browser Push Notifications</strong>
+              <span id="browser-notif-status" style="font-size: 0.74rem; color: var(--color-text-subtle);">Disabled (Permission required)</span>
+            </div>
+            <button id="btn-request-browser-notif" class="btn btn--ghost" type="button" style="font-size: 0.76rem; padding: 0.4rem 0.85rem;">
+              Enable Alerts
+            </button>
+          </div>
+        </div>
+
+        <div class="node-dialog__actions" style="justify-content: flex-end; gap: 0.8rem;">
+          <button id="notif-settings-cancel-btn" class="btn btn--ghost" style="padding: 0.65rem 1.4rem; font-size: 0.82rem;" type="button">Cancel</button>
+          <button id="notif-settings-save-btn" class="btn btn--primary" style="padding: 0.65rem 1.5rem; font-size: 0.82rem;" type="button">Save Settings</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="js/notes-editor.js"></script>
   <script src="js/workspace.js"></script>
   <script src="js/search.js"></script>
@@ -1424,5 +1849,7 @@
   <script src="js/flashcards.js"></script>
   <script src="js/resources.js"></script>
   <script src="js/progress.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/notifications.js"></script>
 </body>
 </html>

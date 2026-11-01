@@ -283,6 +283,8 @@ window.AdiverseResources = (function () {
     if (assignmentsView) assignmentsView.style.display = 'none';
     if (revisionView) revisionView.style.display = 'none';
     if (progressView) progressView.style.display = 'none';
+    const plannerView = document.getElementById('planner-workspace-view');
+    if (plannerView) plannerView.style.display = 'none';
 
     if (resourcesView) {
       resourcesView.style.display = 'flex';

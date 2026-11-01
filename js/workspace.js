@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const viewport = document.getElementById('tree-viewport');
   const edgesLayer = document.getElementById('edges-layer');
   const nodesLayer = document.getElementById('nodes-layer');
+  const crossEdgesLayer = document.getElementById('cross-edges-layer');
   const nodeToolbar = document.getElementById('node-toolbar');
   const nodeCountBadge = document.getElementById('node-count-badge');
 
@@ -33,8 +34,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const deleteConfirmBtn = document.getElementById('delete-confirm-btn');
   let pendingDeleteNodeId = null;
 
+  // Cross Connect Dialog Elements
+  const crossConnectOverlay = document.getElementById('cross-connect-dialog-overlay');
+  const crossConnectSourceLabel = document.getElementById('cross-connect-source-name');
+  const crossConnectSelect = document.getElementById('cross-connect-target-select');
+  const crossConnectSaveBtn = document.getElementById('cross-connect-save-btn');
+  const crossConnectCancelBtn = document.getElementById('cross-connect-cancel-btn');
+
+  // Connection Details Dialog Elements
+  const connDetailsOverlay = document.getElementById('connection-details-overlay');
+  const connDetailFromLabel = document.getElementById('conn-detail-from');
+  const connDetailToLabel = document.getElementById('conn-detail-to');
+  const connNavFromBtn = document.getElementById('conn-nav-from-btn');
+  const connNavToBtn = document.getElementById('conn-nav-to-btn');
+  const connDeleteBtn = document.getElementById('conn-delete-btn');
+  const connCloseBtn = document.getElementById('conn-close-btn');
+  let activeViewingConnection = null;
+
   // Toolbar action buttons
   const toolOpenNotesBtn = document.getElementById('tool-open-notes');
+  const toolConnectBtn = document.getElementById('tool-connect-topic');
   const toolAddChildBtn = document.getElementById('tool-add-child');
   const toolEditBtn = document.getElementById('tool-edit-title');
   const toolDeleteBtn = document.getElementById('tool-delete');
@@ -75,6 +94,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let nodes = loadNodes();
+
+  // --- Cross-Topic Connections State & Persistence ---
+  const CROSS_STORAGE_KEY = 'adiverse_cross_connections';
+  const DEFAULT_CROSS_CONNECTIONS = [
+    { id: 'conn_seed_1', from: 'n1', to: 'n2', createdAt: Date.now() - 86400000 }
+  ];
+
+  function loadCrossConnections() {
+    try {
+      const stored = localStorage.getItem(CROSS_STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {}
+    return DEFAULT_CROSS_CONNECTIONS;
+  }
+
+  function persistCrossConnections() {
+    try {
+      localStorage.setItem(CROSS_STORAGE_KEY, JSON.stringify(crossConnections));
+    } catch (e) {}
+  }
+
+  let crossConnections = loadCrossConnections();
 
   let selectedNodeId = 'root';
   let dialogMode = 'edit'; // 'edit' or 'add'
@@ -209,6 +253,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       nodesLayer.appendChild(g);
     });
+
+    renderCrossConnections();
 
     if (nodeCountBadge) {
       nodeCountBadge.textContent = `${nodes.length} Concept Nodes`;
@@ -651,6 +697,8 @@ document.addEventListener('DOMContentLoaded', () => {
         edgePath.setAttribute('d', `M ${parent.x} ${parent.y} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${node.x} ${node.y}`);
       }
     });
+
+    renderCrossConnections();
   }
 
   function endNodeDrag() {
@@ -721,6 +769,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function executeDelete(nodeId) {
     const toDelete = new Set([nodeId, ...getDescendants(nodeId)]);
     nodes = nodes.filter(n => !toDelete.has(n.id));
+    crossConnections = crossConnections.filter(c => !toDelete.has(c.from) && !toDelete.has(c.to));
+    persistCrossConnections();
     selectedNodeId = 'root';
     persistNodes();
     renderTree();
@@ -861,6 +911,229 @@ document.addEventListener('DOMContentLoaded', () => {
     toolDeleteBtn.addEventListener('click', deleteSelectedNode);
   }
 
+  // --- Cross-Topic Connections Handlers & Dialogs ---
+  function renderCrossConnections() {
+    if (!crossEdgesLayer) return;
+    crossEdgesLayer.innerHTML = '';
+
+    const nodeMap = new Map();
+    nodes.forEach(n => nodeMap.set(n.id, n));
+
+    crossConnections.forEach(conn => {
+      const fromNode = nodeMap.get(conn.from);
+      const toNode = nodeMap.get(conn.to);
+      if (!fromNode || !toNode) return;
+
+      const mx = (fromNode.x + toNode.x) / 2;
+      const my = (fromNode.y + toNode.y) / 2;
+      const dx = toNode.x - fromNode.x;
+      const dy = toNode.y - fromNode.y;
+      const dist = Math.hypot(dx, dy) || 1;
+
+      // Normal vector perpendicular to chord
+      const nx = -dy / dist;
+      const ny = dx / dist;
+      const arcOffset = Math.min(65, Math.max(30, dist * 0.18));
+      const cx = mx + nx * arcOffset;
+      const cy = my + ny * arcOffset;
+
+      const d = `M ${fromNode.x} ${fromNode.y} Q ${cx} ${cy} ${toNode.x} ${toNode.y}`;
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('class', 'cross-edge-path');
+      path.setAttribute('d', d);
+
+      const hitbox = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      hitbox.setAttribute('class', 'cross-edge-hitbox');
+      hitbox.setAttribute('d', d);
+
+      // Center badge at quadratic midpoint t=0.5
+      const bx = 0.25 * fromNode.x + 0.5 * cx + 0.25 * toNode.x;
+      const by = 0.25 * fromNode.y + 0.5 * cy + 0.25 * toNode.y;
+
+      const badgeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      badgeGroup.setAttribute('class', 'cross-edge-badge-group');
+      badgeGroup.style.cursor = 'pointer';
+
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('class', 'cross-edge-badge');
+      circle.setAttribute('cx', bx);
+      circle.setAttribute('cy', by);
+      circle.setAttribute('r', 8);
+
+      const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      dot.setAttribute('cx', bx);
+      dot.setAttribute('cy', by);
+      dot.setAttribute('r', 3);
+      dot.setAttribute('fill', '#A66BEF');
+
+      badgeGroup.appendChild(circle);
+      badgeGroup.appendChild(dot);
+
+      const handleConnectionClick = (e) => {
+        e.stopPropagation();
+        openConnectionDetails(conn, fromNode, toNode);
+      };
+
+      path.addEventListener('click', handleConnectionClick);
+      hitbox.addEventListener('click', handleConnectionClick);
+      badgeGroup.addEventListener('click', handleConnectionClick);
+
+      crossEdgesLayer.appendChild(path);
+      crossEdgesLayer.appendChild(hitbox);
+      crossEdgesLayer.appendChild(badgeGroup);
+    });
+  }
+
+  function openConnectionDetails(conn, fromNode, toNode) {
+    activeViewingConnection = conn;
+    if (connDetailFromLabel) connDetailFromLabel.textContent = fromNode ? fromNode.title : 'Topic A';
+    if (connDetailToLabel) connDetailToLabel.textContent = toNode ? toNode.title : 'Topic B';
+    if (connDetailsOverlay) connDetailsOverlay.classList.add('is-open');
+  }
+
+  function closeConnectionDetails() {
+    activeViewingConnection = null;
+    if (connDetailsOverlay) connDetailsOverlay.classList.remove('is-open');
+  }
+
+  function centerNode(nodeId) {
+    const node = nodes.find(n => n.id === nodeId);
+    if (!node || !mainStage) return;
+    const rect = mainStage.getBoundingClientRect();
+    panX = rect.width / 2 - node.x * zoom;
+    panY = rect.height / 2 - node.y * zoom;
+    applyTransform();
+  }
+
+  function removeCrossConnection(connId) {
+    crossConnections = crossConnections.filter(c => c.id !== connId);
+    persistCrossConnections();
+    renderCrossConnections();
+  }
+
+  function openCrossConnectDialog(sourceNodeId) {
+    const sourceNode = nodes.find(n => n.id === sourceNodeId);
+    if (!sourceNode) return;
+
+    if (crossConnectSourceLabel) {
+      crossConnectSourceLabel.textContent = sourceNode.title;
+    }
+
+    if (crossConnectSelect) {
+      crossConnectSelect.innerHTML = '<option value="">-- Choose a topic to connect --</option>';
+      const connectedIds = new Set();
+      crossConnections.forEach(c => {
+        if (c.from === sourceNodeId) connectedIds.add(c.to);
+        if (c.to === sourceNodeId) connectedIds.add(c.from);
+      });
+
+      nodes.forEach(n => {
+        if (n.id === sourceNodeId) return; // Prevent self connection
+        if (connectedIds.has(n.id)) return; // Prevent duplicate connection
+
+        const opt = document.createElement('option');
+        opt.value = n.id;
+        opt.textContent = n.title;
+        crossConnectSelect.appendChild(opt);
+      });
+    }
+
+    if (crossConnectOverlay) crossConnectOverlay.classList.add('is-open');
+  }
+
+  function closeCrossConnectDialog() {
+    if (crossConnectOverlay) crossConnectOverlay.classList.remove('is-open');
+  }
+
+  function createCrossConnection(fromId, toId) {
+    if (!fromId || !toId || fromId === toId) return null; // No self connection
+
+    // Check duplicate
+    const exists = crossConnections.some(c =>
+      (c.from === fromId && c.to === toId) || (c.from === toId && c.to === fromId)
+    );
+    if (exists) return null;
+
+    const newConn = {
+      id: 'conn_' + Date.now(),
+      from: fromId,
+      to: toId,
+      createdAt: Date.now()
+    };
+    crossConnections.push(newConn);
+    persistCrossConnections();
+    renderCrossConnections();
+    return newConn;
+  }
+
+  if (toolConnectBtn) {
+    toolConnectBtn.addEventListener('click', () => {
+      if (selectedNodeId) {
+        openCrossConnectDialog(selectedNodeId);
+      }
+    });
+  }
+
+  if (crossConnectSaveBtn) {
+    crossConnectSaveBtn.addEventListener('click', () => {
+      if (!selectedNodeId || !crossConnectSelect) return;
+      const targetId = crossConnectSelect.value;
+      if (!targetId) return;
+      createCrossConnection(selectedNodeId, targetId);
+      closeCrossConnectDialog();
+    });
+  }
+
+  if (crossConnectCancelBtn) {
+    crossConnectCancelBtn.addEventListener('click', closeCrossConnectDialog);
+  }
+
+  if (crossConnectOverlay) {
+    crossConnectOverlay.addEventListener('click', (e) => {
+      if (e.target === crossConnectOverlay) closeCrossConnectDialog();
+    });
+  }
+
+  if (connNavFromBtn) {
+    connNavFromBtn.addEventListener('click', () => {
+      if (activeViewingConnection) {
+        selectNode(activeViewingConnection.from);
+        centerNode(activeViewingConnection.from);
+        closeConnectionDetails();
+      }
+    });
+  }
+
+  if (connNavToBtn) {
+    connNavToBtn.addEventListener('click', () => {
+      if (activeViewingConnection) {
+        selectNode(activeViewingConnection.to);
+        centerNode(activeViewingConnection.to);
+        closeConnectionDetails();
+      }
+    });
+  }
+
+  if (connDeleteBtn) {
+    connDeleteBtn.addEventListener('click', () => {
+      if (activeViewingConnection) {
+        removeCrossConnection(activeViewingConnection.id);
+        closeConnectionDetails();
+      }
+    });
+  }
+
+  if (connCloseBtn) {
+    connCloseBtn.addEventListener('click', closeConnectionDetails);
+  }
+
+  if (connDetailsOverlay) {
+    connDetailsOverlay.addEventListener('click', (e) => {
+      if (e.target === connDetailsOverlay) closeConnectionDetails();
+    });
+  }
+
   if (addConceptTopbarBtn) {
     addConceptTopbarBtn.addEventListener('click', () => {
       openAddDialog(selectedNodeId || 'root');
@@ -940,10 +1213,15 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedNodeId = id;
       renderTree();
     },
+    centerNode: (id) => centerNode(id),
     moveTopic: (topicId, newParentId) => moveTopic(topicId, newParentId),
     reorderSiblings: (parentId, orderedIds) => reorderSiblings(parentId, orderedIds),
     getDescendants: (id) => getDescendants(id),
     isDescendant: (childId, ancestorId) => isDescendant(childId, ancestorId),
-    deleteSelectedNode: () => deleteSelectedNode()
+    deleteSelectedNode: () => deleteSelectedNode(),
+    getCrossConnections: () => crossConnections,
+    createCrossConnection: (fromId, toId) => createCrossConnection(fromId, toId),
+    removeCrossConnection: (connId) => removeCrossConnection(connId),
+    openCrossConnectDialog: (id) => openCrossConnectDialog(id)
   };
 });

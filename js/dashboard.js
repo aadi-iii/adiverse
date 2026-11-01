@@ -1,7 +1,7 @@
 /**
  * ADIVERSE - LEARNING DASHBOARD MODULE
- * Overview metrics, Continue Learning (recently opened topics),
- * Recently Edited notes, and direct notes editor deep linking.
+ * Overview metrics, Quick Action bar, Continue Learning, Recently Edited notes,
+ * Upcoming Deadlines, Planned Study Sessions, and seamless cross-module deep linking.
  */
 
 'use strict';
@@ -10,10 +10,18 @@ window.AdiverseDashboard = (function () {
   let dashboardView = null;
   let metricTotalTopics = null;
   let metricTotalNotes = null;
+  let metricTotalAssignments = null;
+  let metricCompletedTopics = null;
+
   let continueLearningList = null;
   let continueLearningEmpty = null;
   let recentlyEditedList = null;
   let recentlyEditedEmpty = null;
+  let dashDeadlinesList = null;
+  let dashDeadlinesEmpty = null;
+  let dashSessionsList = null;
+  let dashSessionsEmpty = null;
+
   let globalEmpty = null;
   let metricsGrid = null;
   let sectionsGrid = null;
@@ -22,10 +30,18 @@ window.AdiverseDashboard = (function () {
     dashboardView = document.getElementById('dashboard-workspace-view');
     metricTotalTopics = document.getElementById('metric-total-topics');
     metricTotalNotes = document.getElementById('metric-total-notes');
+    metricTotalAssignments = document.getElementById('metric-total-assignments');
+    metricCompletedTopics = document.getElementById('metric-completed-topics');
+
     continueLearningList = document.getElementById('continue-learning-list');
     continueLearningEmpty = document.getElementById('continue-learning-empty');
     recentlyEditedList = document.getElementById('recently-edited-list');
     recentlyEditedEmpty = document.getElementById('recently-edited-empty');
+    dashDeadlinesList = document.getElementById('dash-deadlines-list');
+    dashDeadlinesEmpty = document.getElementById('dash-deadlines-empty');
+    dashSessionsList = document.getElementById('dash-sessions-list');
+    dashSessionsEmpty = document.getElementById('dash-sessions-empty');
+
     globalEmpty = document.getElementById('dashboard-global-empty');
     metricsGrid = document.querySelector('.dashboard-metrics-grid');
     sectionsGrid = document.querySelector('.dashboard-sections-grid');
@@ -42,6 +58,48 @@ window.AdiverseDashboard = (function () {
     if (btnStartTree) {
       btnStartTree.addEventListener('click', () => {
         showView('tree');
+      });
+    }
+
+    // Quick Action Buttons
+    const btnQuickTopic = document.getElementById('dash-quick-topic');
+    const btnQuickNote = document.getElementById('dash-quick-note');
+    const btnQuickAssignment = document.getElementById('dash-quick-assignment');
+    const btnQuickSession = document.getElementById('dash-quick-session');
+
+    if (btnQuickTopic) {
+      btnQuickTopic.addEventListener('click', () => {
+        showView('tree');
+        const addBtn = document.getElementById('add-concept-topbar');
+        if (addBtn) addBtn.click();
+      });
+    }
+
+    if (btnQuickNote) {
+      btnQuickNote.addEventListener('click', () => {
+        const nodes = getNodes();
+        const candidate = nodes.find(n => !n.isRoot) || nodes[0];
+        if (candidate) {
+          openTopicFromDashboard(candidate.id, candidate.title);
+        } else {
+          showView('tree');
+        }
+      });
+    }
+
+    if (btnQuickAssignment) {
+      btnQuickAssignment.addEventListener('click', () => {
+        if (window.AdiverseAssignments && typeof window.AdiverseAssignments.openCreateModal === 'function') {
+          window.AdiverseAssignments.openCreateModal();
+        }
+      });
+    }
+
+    if (btnQuickSession) {
+      btnQuickSession.addEventListener('click', () => {
+        if (window.AdiversePlanner && typeof window.AdiversePlanner.openCreateModal === 'function') {
+          window.AdiversePlanner.openCreateModal();
+        }
       });
     }
 
@@ -88,6 +146,7 @@ window.AdiverseDashboard = (function () {
     if (backdrop) backdrop.classList.remove('is-open');
 
     const assignmentsView = document.getElementById('assignments-workspace-view');
+    const plannerView = document.getElementById('planner-workspace-view');
     const revisionView = document.getElementById('revision-workspace-view');
     const resourcesView = document.getElementById('resources-workspace-view');
     const progressView = document.getElementById('progress-workspace-view');
@@ -102,6 +161,7 @@ window.AdiverseDashboard = (function () {
       }
       if (stage) stage.style.display = 'none';
       if (assignmentsView) assignmentsView.style.display = 'none';
+      if (plannerView) plannerView.style.display = 'none';
       if (revisionView) revisionView.style.display = 'none';
       if (resourcesView) resourcesView.style.display = 'none';
       if (progressView) progressView.style.display = 'none';
@@ -125,6 +185,7 @@ window.AdiverseDashboard = (function () {
       }
       if (dashboardView) dashboardView.style.display = 'none';
       if (assignmentsView) assignmentsView.style.display = 'none';
+      if (plannerView) plannerView.style.display = 'none';
       if (revisionView) revisionView.style.display = 'none';
       if (resourcesView) resourcesView.style.display = 'none';
       if (progressView) progressView.style.display = 'none';
@@ -136,6 +197,10 @@ window.AdiverseDashboard = (function () {
       navItems.forEach(item => item.classList.remove('active'));
       const navTreeBtn = document.getElementById('nav-knowledge-tree');
       if (navTreeBtn) navTreeBtn.classList.add('active');
+    } else if (viewName === 'planner') {
+      if (window.AdiversePlanner && typeof window.AdiversePlanner.show === 'function') {
+        window.AdiversePlanner.show();
+      }
     } else if (viewName === 'assignments') {
       if (window.AdiverseAssignments && typeof window.AdiverseAssignments.show === 'function') {
         window.AdiverseAssignments.show();
@@ -166,6 +231,28 @@ window.AdiverseDashboard = (function () {
     return [];
   }
 
+  function getAssignments() {
+    if (window.AdiverseAssignments && typeof window.AdiverseAssignments.getAssignments === 'function') {
+      return window.AdiverseAssignments.getAssignments();
+    }
+    try {
+      const raw = localStorage.getItem('adiverse_assignments_data');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return [];
+  }
+
+  function getSessions() {
+    if (window.AdiversePlanner && typeof window.AdiversePlanner.getSessions === 'function') {
+      return window.AdiversePlanner.getSessions();
+    }
+    try {
+      const raw = localStorage.getItem('adiverse_study_sessions');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return [];
+  }
+
   function render() {
     const nodes = getNodes();
 
@@ -183,7 +270,25 @@ window.AdiverseDashboard = (function () {
     });
     if (metricTotalNotes) metricTotalNotes.textContent = totalNotes;
 
-    // 3. Global Empty State check
+    // 3. Active Assignments
+    const assignments = getAssignments();
+    const activeAssignments = assignments.filter(a => a.status !== 'Completed').length;
+    if (metricTotalAssignments) metricTotalAssignments.textContent = activeAssignments;
+
+    // 4. Completed Topics
+    let completedCount = 0;
+    try {
+      const rawStatuses = localStorage.getItem('adiverse_topic_status');
+      if (rawStatuses) {
+        const statusMap = JSON.parse(rawStatuses);
+        Object.keys(statusMap).forEach(key => {
+          if (statusMap[key] === 'completed') completedCount++;
+        });
+      }
+    } catch (e) {}
+    if (metricCompletedTopics) metricCompletedTopics.textContent = completedCount;
+
+    // 5. Global Empty State check
     if (totalTopics === 0) {
       if (globalEmpty) globalEmpty.style.display = 'flex';
       if (metricsGrid) metricsGrid.style.display = 'none';
@@ -195,11 +300,17 @@ window.AdiverseDashboard = (function () {
       if (sectionsGrid) sectionsGrid.style.display = 'grid';
     }
 
-    // 4. Continue Learning (Recently Opened Topics)
+    // 6. Continue Learning (Recently Opened Topics)
     renderContinueLearning(nodes);
 
-    // 5. Recently Edited Notes
+    // 7. Recently Edited Notes
     renderRecentlyEdited(nodes);
+
+    // 8. Upcoming Deadlines
+    renderUpcomingDeadlines(assignments);
+
+    // 9. Planned Study Sessions
+    renderPlannedSessions();
   }
 
   function renderContinueLearning(nodes) {
@@ -211,13 +322,11 @@ window.AdiverseDashboard = (function () {
       if (raw) recents = JSON.parse(raw);
     } catch (e) {}
 
-    // Filter to topics that still exist in tree
     const nodeMap = new Map();
     nodes.forEach(n => nodeMap.set(n.id, n));
 
     recents = recents.filter(item => nodeMap.has(item.id));
 
-    // Fallback: If no topics have been opened yet, present tree topics as starting topics
     if (recents.length === 0) {
       nodes.forEach(n => {
         if (!n.isRoot && recents.length < 5) {
@@ -239,7 +348,7 @@ window.AdiverseDashboard = (function () {
     continueLearningEmpty.style.display = 'none';
     continueLearningList.innerHTML = '';
 
-    recents.slice(0, 6).forEach(item => {
+    recents.slice(0, 5).forEach(item => {
       const node = nodeMap.get(item.id);
       const parent = node && node.parentId ? nodeMap.get(node.parentId) : null;
       const hierarchy = parent ? `Under ${parent.title}` : 'Concept Topic';
@@ -290,10 +399,8 @@ window.AdiverseDashboard = (function () {
       if (raw) recentEdited = JSON.parse(raw);
     } catch (e) {}
 
-    // Filter to existing nodes
     recentEdited = recentEdited.filter(item => nodeMap.has(item.id));
 
-    // Also include any topics that have notes in localStorage but aren't in recentEdited yet
     const knownIds = new Set(recentEdited.map(r => r.id));
     nodes.forEach(n => {
       if (!knownIds.has(n.id)) {
@@ -324,8 +431,7 @@ window.AdiverseDashboard = (function () {
     recentlyEditedEmpty.style.display = 'none';
     recentlyEditedList.innerHTML = '';
 
-    recentEdited.slice(0, 6).forEach(item => {
-      // Get fresh snippet if available
+    recentEdited.slice(0, 5).forEach(item => {
       let snippet = item.snippet;
       if (!snippet) {
         const rawNote = localStorage.getItem(`adiverse_notes_data_${item.id}`);
@@ -369,12 +475,131 @@ window.AdiverseDashboard = (function () {
     });
   }
 
+  function renderUpcomingDeadlines(assignments) {
+    if (!dashDeadlinesList || !dashDeadlinesEmpty) return;
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    const upcoming = assignments
+      .filter(a => a.status !== 'Completed')
+      .sort((a, b) => (a.dueDate || '').localeCompare(b.dueDate || ''));
+
+    if (upcoming.length === 0) {
+      dashDeadlinesList.innerHTML = '';
+      dashDeadlinesEmpty.style.display = 'block';
+      return;
+    }
+
+    dashDeadlinesEmpty.style.display = 'none';
+    dashDeadlinesList.innerHTML = '';
+
+    upcoming.slice(0, 4).forEach(assign => {
+      const card = document.createElement('div');
+      card.className = 'dashboard-item-card';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+
+      const isOverdue = assign.dueDate < todayStr;
+      const dotColor = isOverdue ? '#c92a2a' : '#d9480f';
+
+      card.innerHTML = `
+        <div class="dashboard-item-top">
+          <div class="dashboard-item-title">
+            <span class="dashboard-item-dot" style="background: ${dotColor};" aria-hidden="true"></span>
+            <span>${escapeHtml(assign.title)}</span>
+          </div>
+          <span class="dashboard-item-badge" style="border-color: ${dotColor}; color: ${dotColor};">${isOverdue ? 'Overdue' : escapeHtml(assign.priority || 'Medium')}</span>
+        </div>
+        <div class="dashboard-item-meta">
+          <span>📅 Due: ${assign.dueDate || 'No date'}</span>
+          <span>•</span>
+          <span>${escapeHtml(assign.subject || 'Milestone')}</span>
+          <span>•</span>
+          <span style="color: var(--color-purple); font-weight: bold;">View Details →</span>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        if (window.AdiverseAssignments && typeof window.AdiverseAssignments.openDetailModal === 'function') {
+          window.AdiverseAssignments.openDetailModal(assign.id);
+        }
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && window.AdiverseAssignments && typeof window.AdiverseAssignments.openDetailModal === 'function') {
+          window.AdiverseAssignments.openDetailModal(assign.id);
+        }
+      });
+
+      dashDeadlinesList.appendChild(card);
+    });
+  }
+
+  function renderPlannedSessions() {
+    if (!dashSessionsList || !dashSessionsEmpty) return;
+
+    const sessions = getSessions();
+    const activeSessions = sessions
+      .filter(s => !s.completed)
+      .sort((a, b) => {
+        const timeA = (a.date || '') + ' ' + (a.startTime || '00:00');
+        const timeB = (b.date || '') + ' ' + (b.startTime || '00:00');
+        return timeA.localeCompare(timeB);
+      });
+
+    if (activeSessions.length === 0) {
+      dashSessionsList.innerHTML = '';
+      dashSessionsEmpty.style.display = 'block';
+      return;
+    }
+
+    dashSessionsEmpty.style.display = 'none';
+    dashSessionsList.innerHTML = '';
+
+    activeSessions.slice(0, 4).forEach(sess => {
+      const card = document.createElement('div');
+      card.className = 'dashboard-item-card';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+
+      card.innerHTML = `
+        <div class="dashboard-item-top">
+          <div class="dashboard-item-title">
+            <span class="dashboard-item-dot" style="background: var(--color-purple);" aria-hidden="true"></span>
+            <span>${escapeHtml(sess.title)}</span>
+          </div>
+          <span class="dashboard-item-badge">${escapeHtml(sess.topic || 'General')}</span>
+        </div>
+        <div class="dashboard-item-meta">
+          <span>🕒 ${sess.date} at ${sess.startTime || '10:00'} (${sess.duration || 60}m)</span>
+          <span>•</span>
+          <span style="color: var(--color-purple); font-weight: bold;">Open in Planner →</span>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        if (window.AdiversePlanner && typeof window.AdiversePlanner.show === 'function') {
+          window.AdiversePlanner.show();
+          if (typeof window.AdiversePlanner.openEditModal === 'function') {
+            window.AdiversePlanner.openEditModal(sess.id);
+          }
+        }
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && window.AdiversePlanner && typeof window.AdiversePlanner.show === 'function') {
+          window.AdiversePlanner.show();
+        }
+      });
+
+      dashSessionsList.appendChild(card);
+    });
+  }
+
   function openTopicFromDashboard(nodeId, nodeTitle) {
     if (dashboardView) dashboardView.style.display = 'none';
     if (window.AdiverseNotes && typeof window.AdiverseNotes.openTopic === 'function') {
       window.AdiverseNotes.openTopic(nodeId, nodeTitle);
     }
-    // Update nav active item
     const navItems = document.querySelectorAll('.workspace-nav-item');
     navItems.forEach(item => item.classList.remove('active'));
     const navTreeBtn = document.getElementById('nav-knowledge-tree');

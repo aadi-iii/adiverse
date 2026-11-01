@@ -81,6 +81,8 @@ window.AdiverseNotes = (function () {
     if (resourcesView) resourcesView.style.display = 'none';
     const progressView = document.getElementById('progress-workspace-view');
     if (progressView) progressView.style.display = 'none';
+    const plannerView = document.getElementById('planner-workspace-view');
+    if (plannerView) plannerView.style.display = 'none';
     if (notesView) {
       notesView.style.display = 'flex';
       notesView.classList.add('is-active');
