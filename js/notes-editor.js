@@ -71,9 +71,17 @@ window.AdiverseNotes = (function () {
 
     // Switch Views
     if (stage) stage.style.display = 'none';
+    const dashboardView = document.getElementById('dashboard-workspace-view');
+    if (dashboardView) dashboardView.style.display = 'none';
     if (notesView) {
       notesView.style.display = 'flex';
       notesView.classList.add('is-active');
+    }
+
+    // Record recently opened topic
+    recordRecentlyOpened(nodeId, activeNodeTitle);
+    if (window.AdiverseDashboard && typeof window.AdiverseDashboard.render === 'function') {
+      window.AdiverseDashboard.render();
     }
 
     // Update Headings
@@ -101,6 +109,16 @@ window.AdiverseNotes = (function () {
     if (stage) {
       stage.style.display = 'flex';
     }
+
+    const navItems = document.querySelectorAll('.workspace-nav-item');
+    navItems.forEach(i => i.classList.remove('active'));
+    const treeNav = document.getElementById('nav-knowledge-tree');
+    if (treeNav) treeNav.classList.add('active');
+
+    const eyebrow = document.getElementById('workspace-view-eyebrow');
+    const title = document.getElementById('workspace-view-title');
+    if (eyebrow) eyebrow.textContent = 'Academic Workspace';
+    if (title) title.textContent = 'Knowledge Tree';
 
     if (imageActionBar) imageActionBar.classList.remove('is-visible');
     activeImage = null;
@@ -186,6 +204,42 @@ window.AdiverseNotes = (function () {
     }
   }
 
+  function recordRecentlyOpened(nodeId, title) {
+    if (!nodeId) return;
+    try {
+      const raw = localStorage.getItem('adiverse_recent_opened');
+      let recents = raw ? JSON.parse(raw) : [];
+      recents = recents.filter(item => item.id !== nodeId);
+      recents.unshift({
+        id: nodeId,
+        title: title || 'Topic Notes',
+        openedAt: Date.now()
+      });
+      localStorage.setItem('adiverse_recent_opened', JSON.stringify(recents.slice(0, 10)));
+    } catch (e) {}
+  }
+
+  function recordRecentlyEdited(nodeId, title, htmlContent) {
+    if (!nodeId) return;
+    try {
+      const plain = (htmlContent || '')
+        .replace(/<\/?(div|p|h[1-6]|li|blockquote|br|hr)[^>]*>/gi, ' ')
+        .replace(/<[^>]+>/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      const raw = localStorage.getItem('adiverse_recent_edited');
+      let recents = raw ? JSON.parse(raw) : [];
+      recents = recents.filter(item => item.id !== nodeId);
+      recents.unshift({
+        id: nodeId,
+        title: title || 'Topic Notes',
+        editedAt: Date.now(),
+        snippet: plain.substring(0, 110)
+      });
+      localStorage.setItem('adiverse_recent_edited', JSON.stringify(recents.slice(0, 10)));
+    } catch (e) {}
+  }
+
   function commitSave() {
     if (!activeNodeId || !editorBody) return;
     const content = editorBody.innerHTML;
@@ -194,7 +248,13 @@ window.AdiverseNotes = (function () {
     // Save Theme Object
     localStorage.setItem(getThemeKey(activeNodeId), JSON.stringify(currentTheme));
 
+    recordRecentlyEdited(activeNodeId, activeNodeTitle, content);
+
     updateSaveIndicator(true);
+
+    if (window.AdiverseDashboard && typeof window.AdiverseDashboard.render === 'function') {
+      window.AdiverseDashboard.render();
+    }
   }
 
   function updateSaveIndicator(isSaved) {

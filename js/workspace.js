@@ -69,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       localStorage.setItem('adiverse_tree_nodes', JSON.stringify(nodes));
     } catch (e) {}
+    if (window.AdiverseDashboard && typeof window.AdiverseDashboard.render === 'function') {
+      window.AdiverseDashboard.render();
+    }
   }
 
   let nodes = loadNodes();
