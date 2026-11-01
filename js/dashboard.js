@@ -88,6 +88,7 @@ window.AdiverseDashboard = (function () {
     if (backdrop) backdrop.classList.remove('is-open');
 
     const assignmentsView = document.getElementById('assignments-workspace-view');
+    const revisionView = document.getElementById('revision-workspace-view');
 
     if (viewName === 'dashboard') {
       if (notesView) {
@@ -99,6 +100,7 @@ window.AdiverseDashboard = (function () {
       }
       if (stage) stage.style.display = 'none';
       if (assignmentsView) assignmentsView.style.display = 'none';
+      if (revisionView) revisionView.style.display = 'none';
       if (dashboardView) dashboardView.style.display = 'block';
 
       if (eyebrow) eyebrow.textContent = 'Cosmos Overview';
@@ -119,6 +121,7 @@ window.AdiverseDashboard = (function () {
       }
       if (dashboardView) dashboardView.style.display = 'none';
       if (assignmentsView) assignmentsView.style.display = 'none';
+      if (revisionView) revisionView.style.display = 'none';
       if (stage) stage.style.display = 'flex';
 
       if (eyebrow) eyebrow.textContent = 'Academic Workspace';
@@ -130,6 +133,10 @@ window.AdiverseDashboard = (function () {
     } else if (viewName === 'assignments') {
       if (window.AdiverseAssignments && typeof window.AdiverseAssignments.show === 'function') {
         window.AdiverseAssignments.show();
+      }
+    } else if (viewName === 'revision') {
+      if (window.AdiverseFlashcards && typeof window.AdiverseFlashcards.show === 'function') {
+        window.AdiverseFlashcards.show();
       }
     }
   }

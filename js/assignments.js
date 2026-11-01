@@ -416,8 +416,10 @@ window.AdiverseAssignments = (function () {
       notesView.style.display = 'none';
       notesView.classList.remove('is-active');
     }
+    const revisionView = document.getElementById('revision-workspace-view');
     if (stage) stage.style.display = 'none';
     if (dashboardView) dashboardView.style.display = 'none';
+    if (revisionView) revisionView.style.display = 'none';
 
     if (assignmentsView) {
       assignmentsView.style.display = 'flex';
